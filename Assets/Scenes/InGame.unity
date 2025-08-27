@@ -311,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 813255028}
   - component: {fileID: 813255029}
+  - component: {fileID: 813255030}
   m_Layer: 0
   m_Name: NavSystem
   m_TagString: Untagged
@@ -327,7 +328,7 @@ Transform:
   m_GameObject: {fileID: 813255026}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -601.94775, y: 465.44147, z: -5.955836}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -341,10 +342,31 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813255026}
   m_Enabled: 1
-  m_CellSize: {x: 0.5, y: 0.5, z: 0.5}
+  m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
-  m_CellSwizzle: 0
+  m_CellSwizzle: 1
+--- !u!114 &813255030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813255026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510a846239276fb4889546121981dd7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 1883667047}
+  obstacles:
+  - {fileID: 1002845836}
+  - {fileID: 1755975913}
+  - {fileID: 115167164}
+  - {fileID: 865951020}
+  offset: {x: -100, y: -100}
+  mapSize: {x: 200, y: 200}
+  grid: {fileID: 813255029}
 --- !u!1 &865951019
 GameObject:
   m_ObjectHideFlags: 0
