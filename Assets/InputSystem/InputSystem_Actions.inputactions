@@ -13,6 +13,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TabOn",
+                    "type": "Button",
+                    "id": "8455028a-d04a-4d8b-b4f3-ceb623a3f8d7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TabOff",
+                    "type": "Button",
+                    "id": "33858adb-1321-4dfc-a4e9-312a8aa04a2b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -150,12 +168,23 @@
                 },
                 {
                     "name": "",
-                    "id": "7f3bfe1b-c258-41ce-9e6b-f10f4b6106ea",
-                    "path": "<Touchscreen>/delta",
+                    "id": "c902fc96-cdca-4285-843f-2373e537918a",
+                    "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Touch;Keyboard&Mouse",
-                    "action": "Move",
+                    "groups": "",
+                    "action": "TabOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3018f205-1588-4f79-83e8-cdfd1df230c9",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabOff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

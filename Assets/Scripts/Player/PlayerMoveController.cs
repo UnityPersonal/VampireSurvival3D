@@ -5,16 +5,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMoveController : MonoBehaviour 
 {
     [SerializeField] private InputActionAsset inputActionAsset;
     [ReadOnly] private Vector2 moveInputVector;
+    
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 180f;
     [SerializeField] Animator animator;
-
+    [Required,SerializeField] CharacterController characterController;
+    
     private InputActionMap playerActionMap;
     private InputAction moveAction;
+    
+    [SerializeField] GameObject mobileContorl;
+    private InputAction tabOnAction;
+    private InputAction tabOffAction;
     
     private Camera mainCamera;
 
@@ -28,6 +35,8 @@ public class PlayerMoveController : MonoBehaviour
         playerActionMap =  inputActionAsset.FindActionMap("Player");
         
         moveAction = playerActionMap.FindAction("Move");
+        tabOnAction  = playerActionMap.FindAction("TabOn");
+        tabOffAction  = playerActionMap.FindAction("TabOff");
         mainCamera =  Camera.main;
         
         rightMoveDirection = mainCamera.transform.right;
@@ -39,12 +48,32 @@ public class PlayerMoveController : MonoBehaviour
         forwardMoveDirection = forwardMoveDirection.normalized;
     }
 
-   
+    private void OnEnable()
+    {
+        playerActionMap.Enable();
+        
+        
+    }
+
+    private void OnDisable()
+    {
+        playerActionMap.Disable();
+    }
+
 
     private void Update()
     {
         moveInputVector = moveAction.ReadValue<Vector2>();
-        Rotate();
+
+        if (tabOnAction.WasPerformedThisFrame())
+        {
+            mobileContorl.SetActive(true);
+        }
+
+        if (tabOffAction.WasPerformedThisFrame())
+        {
+            mobileContorl.SetActive(false);
+        }
     }
     
     private void Rotate()
@@ -55,8 +84,9 @@ public class PlayerMoveController : MonoBehaviour
             var moveForward = moveInputVector.y * forwardMoveDirection;
             var toward = (moveRight + moveForward).normalized;
             
-            moveDirection = Vector3.Slerp(moveDirection , toward, Time.deltaTime * rotateSpeed);
-            transform.forward = moveDirection;
+            moveDirection = Vector3.Slerp(moveDirection , toward, Time.fixedDeltaTime * rotateSpeed);
+            moveDirection = toward;
+            animator.transform.forward = moveDirection;
             
         }
     }
@@ -65,6 +95,7 @@ public class PlayerMoveController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        Rotate();
     }
     
     private void Move()
@@ -73,7 +104,8 @@ public class PlayerMoveController : MonoBehaviour
         if (moveInputVector != Vector2.zero)
         {
             var moveDelta = moveDirection * (moveSpeed * Time.fixedDeltaTime);
-            transform.Translate(moveDelta, Space.World);
+            //transform.Translate(moveDelta, Space.World);
+            characterController.Move(moveDelta);
         }
     }
 }
