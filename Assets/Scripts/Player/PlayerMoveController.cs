@@ -44,20 +44,22 @@ public class PlayerMoveController : MonoBehaviour
     private void Update()
     {
         moveInputVector = moveAction.ReadValue<Vector2>();
-        
+        Rotate();
     }
     
     private void Rotate()
     {
-        var moveRight = moveInputVector.x * rightMoveDirection;
-        var moveForward = moveInputVector.y * forwardMoveDirection;
-        var toward = (moveRight + moveForward).normalized;
-        moveDirection = Vector3.Slerp(moveDirection , toward, Time.deltaTime * rotateSpeed);
-        transform.forward = moveDirection;
+        if (moveInputVector != Vector2.zero)
+        {
+            var moveRight = moveInputVector.x * rightMoveDirection;
+            var moveForward = moveInputVector.y * forwardMoveDirection;
+            var toward = (moveRight + moveForward).normalized;
+            
+            moveDirection = Vector3.Slerp(moveDirection , toward, Time.deltaTime * rotateSpeed);
+            transform.forward = moveDirection;
+            
+        }
     }
-
-  
-
 
     
     private void FixedUpdate()
