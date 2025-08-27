@@ -11,6 +11,7 @@ public class PlayerMoveController : MonoBehaviour
     [ReadOnly] private Vector2 moveInputVector;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 180f;
+    [SerializeField] Animator animator;
 
     private InputActionMap playerActionMap;
     private InputAction moveAction;
@@ -20,7 +21,7 @@ public class PlayerMoveController : MonoBehaviour
     [ReadOnly,ShowInInspector] private Vector3 rightMoveDirection;
     [ReadOnly,ShowInInspector] private Vector3 forwardMoveDirection;
     
-    [SerializeField] Animator animator;
+    [ReadOnly,ShowInInspector] private Vector3 moveDirection;
 
     private void Awake()
     {
@@ -36,33 +37,41 @@ public class PlayerMoveController : MonoBehaviour
         forwardMoveDirection = mainCamera.transform.forward;
         forwardMoveDirection.y = 0;
         forwardMoveDirection = forwardMoveDirection.normalized;
-        
-        
     }
 
+   
 
     private void Update()
     {
         moveInputVector = moveAction.ReadValue<Vector2>();
         
+    }
+    
+    private void Rotate()
+    {
         var moveRight = moveInputVector.x * rightMoveDirection;
         var moveForward = moveInputVector.y * forwardMoveDirection;
         var toward = (moveRight + moveForward).normalized;
         moveDirection = Vector3.Slerp(moveDirection , toward, Time.deltaTime * rotateSpeed);
         transform.forward = moveDirection;
-        
-        animator.SetFloat("MoveSpeed", moveInputVector.magnitude);
     }
 
-    [ShowInInspector] private Vector3 moveDirection;
+  
+
+
     
     private void FixedUpdate()
     {
+        Move();
+    }
+    
+    private void Move()
+    {
+        animator.SetFloat("MoveSpeed", moveInputVector.magnitude);
         if (moveInputVector != Vector2.zero)
         {
             var moveDelta = moveDirection * (moveSpeed * Time.fixedDeltaTime);
             transform.Translate(moveDelta, Space.World);
         }
-        
     }
 }
