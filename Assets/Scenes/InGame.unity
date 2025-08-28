@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 115167166}
   - component: {fileID: 115167165}
   - component: {fileID: 115167164}
-  - component: {fileID: 115167168}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -230,22 +229,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1115956115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &115167168
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115167163}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &136205536
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,11 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 1883667047}
-  obstacles:
-  - {fileID: 1002845836}
-  - {fileID: 1755975913}
-  - {fileID: 115167164}
-  - {fileID: 865951020}
+  colliders: []
   offset: {x: -100, y: -100}
   mapSize: {x: 200, y: 200}
   grid: {fileID: 813255029}
@@ -379,7 +358,6 @@ GameObject:
   - component: {fileID: 865951022}
   - component: {fileID: 865951021}
   - component: {fileID: 865951020}
-  - component: {fileID: 865951024}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -478,22 +456,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1115956115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &865951024
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865951019}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!4 &940195563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3788106315135086504, guid: 0dfe65c9281c84dea862d6428b76d121, type: 3}
@@ -576,7 +538,6 @@ GameObject:
   - component: {fileID: 1002845838}
   - component: {fileID: 1002845837}
   - component: {fileID: 1002845836}
-  - component: {fileID: 1002845840}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -675,22 +636,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1115956115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &1002845840
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002845835}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &1010883531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -925,7 +870,6 @@ GameObject:
   - component: {fileID: 1258572818}
   - component: {fileID: 1258572817}
   - component: {fileID: 1258572816}
-  - component: {fileID: 1258572820}
   m_Layer: 0
   m_Name: NavigationMap
   m_TagString: Untagged
@@ -1023,38 +967,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1115956115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1258572820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258572815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 68ecea8011a338f4a902235bedbe132a, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &1500071076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1144,6 @@ GameObject:
   - component: {fileID: 1755975915}
   - component: {fileID: 1755975914}
   - component: {fileID: 1755975913}
-  - component: {fileID: 1755975917}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -1331,22 +1242,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1115956115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!208 &1755975917
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755975912}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1758151591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,63 +1770,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7093770068856124882, guid: 0dfe65c9281c84dea862d6428b76d121, type: 3}
   m_PrefabInstance: {fileID: 985634415}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3679506105730291223
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679826418903607610, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657236800418992009, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
-      propertyPath: m_Name
-      value: Monster
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1944,6 +1782,5 @@ SceneRoots:
   - {fileID: 1925615441}
   - {fileID: 1554352673}
   - {fileID: 2066450266}
-  - {fileID: 3679506105730291223}
   - {fileID: 136205537}
   - {fileID: 813255028}

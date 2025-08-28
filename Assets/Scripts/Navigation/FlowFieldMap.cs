@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -54,6 +55,9 @@ public class FlowFieldMap : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        if (EditorApplication.isPlaying == false)
+            return;
+        
         var cellLayout = grid.cellLayout;
 
         var offsetVector3Int = new Vector3Int(offset.x, offset.y, 0);
