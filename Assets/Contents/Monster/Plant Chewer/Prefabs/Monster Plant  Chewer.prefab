@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8708006946151826235}
   - component: {fileID: 1035325630430678756}
   - component: {fileID: 447223447829883925}
-  m_Layer: 0
-  m_Name: Monster
+  m_Layer: 6
+  m_Name: Monster Plant  Chewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3679826418903607610}
     m_Modifications:
+    - target: {fileID: 10679787588319682, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 189429038628866758, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 449493294674508417, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 628421266070694145, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 725183922300409834, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072089572502987109, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945316305963775997, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365472449381463005, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3423146626908338069, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4274936823828973309, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681845371897199017, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5070505270229204057, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5380895379689529187, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -150,9 +198,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6217182746465150093, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367870088739751661, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6597938661868639066, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
       propertyPath: m_Name
       value: Plant Chewer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597938661868639066, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6710076832526684471, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342118490613158536, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7670643973415436724, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805580749462912103, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8156546302394382965, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239675516242652845, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407083830971488617, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733300306953864132, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8857929372171165292, guid: bb8598fa9f458344b8dc7f5ca4f0dabb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

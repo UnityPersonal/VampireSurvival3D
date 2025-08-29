@@ -86,7 +86,7 @@ public class PlayerMoveController : MonoBehaviour
             
             moveDirection = Vector3.Slerp(moveDirection , toward, Time.fixedDeltaTime * rotateSpeed);
             moveDirection = toward;
-            animator.transform.forward = moveDirection;
+            transform.forward = moveDirection;
             
         }
     }

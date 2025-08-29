@@ -17,7 +17,6 @@ public class Monster : MonoBehaviour
     private static Camera mainCamera;
     
     private Transform playerTransform;
-    private Transform monsterTransform;
     
     [SerializeField, Required] Animator animator;
     [SerializeField] int frameInterval = 5;
@@ -32,7 +31,6 @@ public class Monster : MonoBehaviour
             mainCamera = Camera.main;
         }
         playerTransform = Player.Instance.transform;
-        monsterTransform = transform;
 
         agent.avoidancePriority = Random.Range(50, 1000);
     }
@@ -41,9 +39,7 @@ public class Monster : MonoBehaviour
     {
         if (Time.frameCount % frameInterval == 0)
         {
-            int r = Random.Range(0, 1);
-            agent.enabled = r == 0;
-            //UpdateDestination();
+            UpdateDestination();
         }
     }
 

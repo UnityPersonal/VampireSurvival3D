@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 115167165}
   - component: {fileID: 115167164}
   - component: {fileID: 115167168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8da6668f8cdce44a0d0fa85acc547a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sample: {fileID: 8708006946151826235, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
+  samples:
+  - {fileID: 1396311032101171746, guid: b6f4def4c1003b6479bdcac3fd529c3a, type: 3}
+  - {fileID: 3634194532164870416, guid: 561f28301f9d52f43b360492a51d127d, type: 3}
+  - {fileID: 8708006946151826235, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
   maxSpawnCount: 1000
   spawnPerCount: 50
   spawnRadius: 10
@@ -314,7 +317,7 @@ GameObject:
   - component: {fileID: 865951021}
   - component: {fileID: 865951020}
   - component: {fileID: 865951024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +514,7 @@ GameObject:
   - component: {fileID: 1002845837}
   - component: {fileID: 1002845836}
   - component: {fileID: 1002845840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1555,7 @@ GameObject:
   - component: {fileID: 1755975914}
   - component: {fileID: 1755975913}
   - component: {fileID: 1755975917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1785,6 +1788,7 @@ GameObject:
   - component: {fileID: 1883667048}
   - component: {fileID: 1883667051}
   - component: {fileID: 1883667052}
+  - component: {fileID: 1883667053}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1865,6 +1869,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba37b6fcfd62db4db604f15efa5f221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1883667053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883667046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f966283cf74255e499e7ea58ae60bafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  projectile: {fileID: 3472488165374478307, guid: 989dbeb5e468ae1448b56ee9d6c1d1f8, type: 3}
+  fireRate: 0.2
+  aimRadius: 5
 --- !u!1 &1902095189
 GameObject:
   m_ObjectHideFlags: 0

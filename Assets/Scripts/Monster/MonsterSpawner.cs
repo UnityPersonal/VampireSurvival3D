@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    [SerializeField,AssetsOnly] Monster sample;
+    [SerializeField,AssetsOnly] Monster[] samples;
+    //[SerializeField,AssetsOnly] Monster sample;
 
     [ShowInInspector] private int currentSpawnCount = 0;
     [SerializeField] private int maxSpawnCount = 1000;
@@ -47,6 +48,8 @@ public class MonsterSpawner : MonoBehaviour
                 var circle = Random.insideUnitCircle * spawnRadius;
                 spawnPosition.x += circle.x;
                 spawnPosition.z += circle.y;
+                
+                var sample = samples[Random.Range(0, samples.Length)];
                 
                 Instantiate(sample, spawnPosition, Quaternion.identity);
             }
