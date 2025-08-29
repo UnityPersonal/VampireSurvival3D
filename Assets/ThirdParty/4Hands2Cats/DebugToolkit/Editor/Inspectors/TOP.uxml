@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:VisualElement name="TOP" class="Top" style="flex-grow: 1; height: 30px; bottom: auto; top: auto; position: relative; right: auto; left: auto; padding-bottom: 0; flex-direction: row;">
+        <engine:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/4Hands2Cats/DebugToolkit/Icons/Icon_13.png?fileID=2800000&amp;guid=ebb6601f65617f145ac5d9464ca91177&amp;type=3#Icon_13&quot;); -unity-background-scale-mode: scale-to-fit; background-size: contain;" />
+        <engine:Label text="Debug Toolkit" name="Title" class="Title" style="background-color: rgb(121, 195, 192); flex-direction: row; padding-right: 0; padding-left: 0; flex-grow: 1; flex-shrink: 1; width: 80%;" />
+    </engine:VisualElement>
+</engine:UXML>

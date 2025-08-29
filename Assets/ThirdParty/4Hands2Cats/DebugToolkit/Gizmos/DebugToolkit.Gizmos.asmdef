@@ -1,0 +1,18 @@
+{
+    "name": "DebugToolkit.Gizmos",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d3f6f115224695b4b9061a1579dbd377",
+        "GUID:9706c73906254e941a31408223d689c2",
+        "GUID:9d9539ba85271b84ab5fcf554a5346cd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

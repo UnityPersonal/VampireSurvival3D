@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     
     [SerializeField, Required] Animator animator;
     [SerializeField] int frameInterval = 5;
+
+    private const float radiusDestination = 0.2f;
     
     private void Start()
     {
@@ -31,19 +33,27 @@ public class Monster : MonoBehaviour
         }
         playerTransform = Player.Instance.transform;
         monsterTransform = transform;
+
+        agent.avoidancePriority = Random.Range(50, 1000);
     }
 
     void Update()
     {
         if (Time.frameCount % frameInterval == 0)
         {
-            UpdateDestination();
+            int r = Random.Range(0, 1);
+            agent.enabled = r == 0;
+            //UpdateDestination();
         }
     }
 
     void UpdateDestination()
     {
-        agent.SetDestination(playerTransform.position);
+        var destination = playerTransform.position;
+        var offset = radiusDestination * Random.insideUnitCircle;
+        destination.x += offset.x;
+        destination.z += offset.y;
+        agent.SetDestination(destination);
     }
 
 }

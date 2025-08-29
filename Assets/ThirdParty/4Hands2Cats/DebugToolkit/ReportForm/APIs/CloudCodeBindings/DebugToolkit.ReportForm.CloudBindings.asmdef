@@ -1,0 +1,16 @@
+{
+    "name": "DebugToolkit.ReportForm.CloudBindings",
+    "rootNamespace": "DebugToolkit.ReportForm.CloudBindings",
+    "references": [
+        "Unity.Services.CloudCode"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

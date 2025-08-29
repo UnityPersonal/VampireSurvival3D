@@ -1,0 +1,47 @@
+.unity-label {
+}
+
+.Title {
+    width: 80%;
+    color: rgb(62, 62, 62);
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    margin-top: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-left-color: rgb(121, 195, 192);
+    border-right-color: rgb(121, 195, 192);
+    border-top-color: rgb(121, 195, 192);
+    border-bottom-color: rgb(121, 195, 192);
+}
+
+.Param {
+    padding-top: 0;
+    padding-bottom: 2px;
+}
+
+.Top {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    flex-grow: 1;
+    height: 30px;
+    position: relative;
+    padding-bottom: 0;
+    flex-direction: row;
+    width: auto;
+}
+
+.Icon {
+    flex-grow: 1;
+    flex-direction: row;
+    background-image: url("project://database/Assets/4Hands2Cats/DebugToolkit/Icons/Icon_13.png?fileID=2800000&guid=ebb6601f65617f145ac5d9464ca91177&type=3#Icon_13");
+    -unity-background-scale-mode: scale-to-fit;
+    background-size: contain;
+    left: auto;
+    width: auto;
+    top: auto;
+    bottom: 2px;
+    min-width: 15%;
+    min-height: 120%;
+}

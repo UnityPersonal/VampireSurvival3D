@@ -1,0 +1,20 @@
+{
+    "name": "DebugToolkit.Sample.Navmesh",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d3f6f115224695b4b9061a1579dbd377",
+        "GUID:7572fcb5f7863b84b9fd2fc0a032449f",
+        "GUID:8c4dd21966739024fbd72155091d199e",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:9d9539ba85271b84ab5fcf554a5346cd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,31 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:VisualElement name="Background" style="flex-grow: 1; background-image: none; background-repeat: round round; background-size: 25% 100%;">
+        <engine:VisualElement name="TOP" style="flex-grow: 1; height: auto; bottom: auto; top: auto; position: relative; right: auto; left: auto;">
+            <engine:Label text="Debug Toolkit" name="Title" />
+        </engine:VisualElement>
+        <engine:VisualElement name="BackGround" style="flex-grow: 1; top: auto; position: relative; right: 0; left: 0;">
+            <engine:VisualElement name="MainPanel" style="flex-grow: 1;">
+                <engine:Label text="Api settings" name="Label" />
+                <engine:TextField label="API key" name="APIKey" />
+                <engine:TextField label="Token" name="Token" />
+                <engine:VisualElement name="Init" style="flex-grow: 1;">
+                    <engine:Label text="Initialization" name="Label" />
+                    <engine:TextField label="Workspace Name" placeholder-text="YourGame" name="WorkspaceName" />
+                    <engine:TextField label="Board Name" placeholder-text="Playtest 007" name="BoardName" />
+                    <engine:TextField label="List Name" placeholder-text="Issues" name="ListName" />
+                    <engine:Button text="Init Trello" name="btn_init" selectable="true" />
+                </engine:VisualElement>
+                <engine:VisualElement name="API" style="flex-grow: 1;">
+                    <engine:Button text="Go generate an API key" name="btn_goToApi" />
+                </engine:VisualElement>
+                <engine:VisualElement name="TokenContainer" style="flex-grow: 1;">
+                    <engine:Button text="Go request a token" name="btn_goToToken" />
+                </engine:VisualElement>
+                <engine:VisualElement name="Trello" style="flex-grow: 1;">
+                    <engine:Button text="Go to trello" name="btn_goToTrello" />
+                    <engine:Button text="Update Labels" name="btn_updateLabels" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

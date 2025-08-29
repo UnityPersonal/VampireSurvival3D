@@ -55,9 +55,7 @@ public class FlowFieldMap : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        if (EditorApplication.isPlaying == false)
-            return;
-        
+       
         var cellLayout = grid.cellLayout;
 
         var offsetVector3Int = new Vector3Int(offset.x, offset.y, 0);

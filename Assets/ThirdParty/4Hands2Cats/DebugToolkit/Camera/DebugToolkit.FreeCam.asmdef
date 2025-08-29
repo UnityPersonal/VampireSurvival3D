@@ -1,0 +1,19 @@
+{
+    "name": "DebugToolkit.FreeCam",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d3f6f115224695b4b9061a1579dbd377",
+        "GUID:9706c73906254e941a31408223d689c2",
+        "GUID:d39efea9e9180db428ee28ce21546234",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

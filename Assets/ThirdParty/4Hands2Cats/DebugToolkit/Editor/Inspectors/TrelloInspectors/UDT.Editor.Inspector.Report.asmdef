@@ -1,0 +1,18 @@
+{
+    "name": "UDT.Editor.Inspector.Report",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8c5b33f87c9195c4aad04327a02b871b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

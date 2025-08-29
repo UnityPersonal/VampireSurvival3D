@@ -1,0 +1,18 @@
+{
+    "name": "UDT.Editor.Inspector.Gizmos",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7572fcb5f7863b84b9fd2fc0a032449f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

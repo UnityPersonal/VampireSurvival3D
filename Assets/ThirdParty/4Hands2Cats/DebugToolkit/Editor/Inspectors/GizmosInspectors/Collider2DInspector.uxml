@@ -1,0 +1,31 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/4Hands2Cats/DebugToolkit/Editor/Inspectors/InspectorUss.uss?fileID=7433441132597879392&amp;guid=9f2239d66b8d32943bf3b74ac86b0fdd&amp;type=3#InspectorUss" />
+    <engine:VisualElement name="Background" style="flex-grow: 1; background-image: none; background-repeat: round round; background-size: 25% 100%;">
+        <engine:VisualElement name="TOP" class="Top">
+            <engine:VisualElement class="Icon" style="flex-grow: 1;" />
+            <engine:Label text="  DT Collider" name="Title" class="Title" style="background-color: rgb(121, 195, 192);" />
+        </engine:VisualElement>
+        <engine:VisualElement name="BackGround" style="flex-grow: 1; top: auto; position: relative; right: 0; left: 0;">
+            <engine:VisualElement name="MainPanel" style="flex-grow: 1;">
+                <engine:EnumField value="Center" type="DebugToolkit.Gizmos.Shape, DebugToolkit.Gizmos" name="Shape" data-source-type="DebugToolkit.Gizmos.Shape, DebugToolkit.Gizmos" focusable="false" label="Shape" />
+                <engine:VisualElement name="Square" style="flex-grow: 1;">
+                    <engine:Vector2Field label="Size" name="Size" />
+                </engine:VisualElement>
+                <engine:VisualElement name="Circle" style="flex-grow: 1; visibility: visible; display: flex;">
+                    <engine:FloatField label="Radius" value="42.2" name="Radius" />
+                </engine:VisualElement>
+                <engine:VisualElement name="Capsule" style="flex-grow: 1;">
+                    <engine:EnumField value="Center" type="UnityEngine.CapsuleDirection2D, UnityEngine.Physics2DModule" name="Direction" data-source-type="DebugToolkit.Gizmos.Shape, DebugToolkit.Gizmos" focusable="false" label="Direction" />
+                    <engine:FloatField label="Radius" value="42.2" name="Radius" />
+                    <engine:FloatField label="Height" value="42.2" name="Height" />
+                </engine:VisualElement>
+                <engine:VisualElement name="Poly" style="flex-grow: 1;">
+                    <editor:ObjectField label="Polygon Collider2D" data-source-type="UnityEngine.MeshCollider, UnityEngine.PhysicsModule" name="Collider" type="UnityEngine.PolygonCollider2D, UnityEngine.Physics2DModule" />
+                </engine:VisualElement>
+                <engine:Vector2Field label="Offset" name="Offset" />
+                <editor:ColorField value="#00FFFFFF" label="Color" />
+                <engine:Toggle label="DrawGizmos" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
