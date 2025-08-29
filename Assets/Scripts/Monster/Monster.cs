@@ -19,9 +19,12 @@ public class Monster : MonoBehaviour
     private Transform playerTransform;
     private Transform monsterTransform;
     
+    [SerializeField, Required] Animator animator;
+    [SerializeField] int frameInterval = 5;
+    
     private void Start()
     {
-        remain = Random.Range(0, 1000);
+        remain = Random.Range(0, 5);
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -32,16 +35,15 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        /*if (remain == 0) // 프레임 분산 처리
+        if (Time.frameCount % frameInterval == 0)
         {
-            remain = destinationUpdateFramePerCount;
             UpdateDestination();
         }
-        remain--;*/
     }
 
     void UpdateDestination()
     {
         agent.SetDestination(playerTransform.position);
     }
+
 }

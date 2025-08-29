@@ -20,7 +20,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < maxSpawnCount; i++)
+        /*for (int i = 0; i < maxSpawnCount; i++)
         {
             var spawnPosition = Player.Instance.transform.position;
             var circle = Random.insideUnitCircle * spawnRadius;
@@ -28,10 +28,9 @@ public class MonsterSpawner : MonoBehaviour
             spawnPosition.z += circle.y;
                 
             Instantiate(sample, spawnPosition, Quaternion.identity);
-        }
+        }*/
     }
 
-    /*// Update is called once per frame
     void Update()
     {
         if (currentSpawnCount >= maxSpawnCount)
@@ -53,5 +52,5 @@ public class MonsterSpawner : MonoBehaviour
             }
             currentSpawnCount +=  spawnPerCount;
         }
-    }*/
+    }
 }
