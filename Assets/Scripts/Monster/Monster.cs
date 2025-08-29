@@ -8,9 +8,12 @@ using Random = UnityEngine.Random;
 //[RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour
 {
+    static int monsterIdGenerator = 0;
+    
     //Required ,SerializeField] private Animator animator;
     [SerializeField] private int destinationUpdateFramePerCount = 1;
-    private int remain = 0;
+    private int mosternUID = 0;
+    private Vector3 lastRequestedPos;
     [SerializeField, Required] NavMeshAgent agent;
     public NavMeshAgent Agent => agent;
     
@@ -25,7 +28,7 @@ public class Monster : MonoBehaviour
     
     private void Start()
     {
-        remain = Random.Range(0, 5);
+        mosternUID = monsterIdGenerator;
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -37,10 +40,14 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-        if (Time.frameCount % frameInterval == 0)
-        {
-            UpdateDestination();
+        // 에이전트별로 프레임 분산 (예: 5프레임마다 1회 경로 갱신)
+        if ((Time.frameCount + mosternUID) % frameInterval == 0) {
+            if ((playerTransform.position - lastRequestedPos).sqrMagnitude > 1.0f) 
+            {
+                UpdateDestination();
+            }
         }
+
     }
 
     void UpdateDestination()
@@ -49,6 +56,8 @@ public class Monster : MonoBehaviour
         var offset = radiusDestination * Random.insideUnitCircle;
         destination.x += offset.x;
         destination.z += offset.y;
+        
+        lastRequestedPos = destination;
         agent.SetDestination(destination);
     }
 
