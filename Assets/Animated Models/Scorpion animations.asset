@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae2fd8e086a5f94991b50e5ca890322, type: 3}
+  m_Name: Scorpion animations
+  m_EditorClassIdentifier: 
+  AnimationFPS: 30
+  Animations:
+  - Name: Walk
+    Meshes:
+    - {fileID: 4300000, guid: 86a09b6bcc784f742b19f13c03492871, type: 2}
+    - {fileID: 4300000, guid: 72dae77c333ff944a909b54b91e6e173, type: 2}
+    - {fileID: 4300000, guid: f59f9c4d8128902438c1dbdcb7c7bd93, type: 2}
+    - {fileID: 4300000, guid: e186fe5b9609dab47af69eaf34d26a29, type: 2}
+    - {fileID: 4300000, guid: 23b291c3ebfc48344b4a56ff8a534e8e, type: 2}
+    - {fileID: 4300000, guid: db2fb71c09a9c03488d480264dca135a, type: 2}
+    - {fileID: 4300000, guid: df31f61a2b822eb4ea5add7bc3f2493c, type: 2}
+    - {fileID: 4300000, guid: 9cc75a2c3e4de6a4483d0db08a1e02d4, type: 2}
+    - {fileID: 4300000, guid: ccce41718e0bb7f42b3bf07c22c0f15a, type: 2}
+    - {fileID: 4300000, guid: ba5a0bfcd6a9efd4882c751316ad2fe6, type: 2}
+    - {fileID: 4300000, guid: c4076f406392fc44aa7d3539a148f300, type: 2}
+    - {fileID: 4300000, guid: bceabb9440ddf1d4e82297242a026509, type: 2}
+    - {fileID: 4300000, guid: 9f848dc637cf3a44db8e4ff4c82dd407, type: 2}
+    - {fileID: 4300000, guid: ccb2aba2a504fd44283d6262c05a0e49, type: 2}
+    - {fileID: 4300000, guid: 6b2bf7376aa69294bb69776de4084c98, type: 2}
+    - {fileID: 4300000, guid: c69c1525c67f34043b7ec5c1b9d4f799, type: 2}
+    - {fileID: 4300000, guid: 90f4062357debb54098fa592ed7a030a, type: 2}
+    - {fileID: 4300000, guid: 71a9c9da5c0e84744925f32aa2247154, type: 2}
+    - {fileID: 4300000, guid: 173dc91f3fee1bc4ba4e5d6bcd2075f1, type: 2}
+    - {fileID: 4300000, guid: 70dbc39cccf2d6b45a926b1dae564924, type: 2}
+    - {fileID: 4300000, guid: b30e56c413148b44383841d09898cc39, type: 2}
+    - {fileID: 4300000, guid: 0c5660756a8465a429ed3a75c1c7e168, type: 2}
+    - {fileID: 4300000, guid: 39cd86c731a9bf2448d2e7c7286f4e93, type: 2}
+    - {fileID: 4300000, guid: 0bdd52bb4ec852d4994240dcd1a5bd4c, type: 2}
+    - {fileID: 4300000, guid: 1d638d836970f3a4081eb4afebdebc2a, type: 2}
+    - {fileID: 4300000, guid: 2ae14e193ddb63642a533fb9011dcad0, type: 2}
+    - {fileID: 4300000, guid: ff04f56af442eac4086795d310f6d6a4, type: 2}
+    - {fileID: 4300000, guid: 67d4f40aad7c78c4a876ed763c62c331, type: 2}
+    - {fileID: 4300000, guid: 47393d793801c7b4e99937fa4fb0893b, type: 2}
+    - {fileID: 4300000, guid: cb9a4a08da2edf14fa4736b9d34d726a, type: 2}

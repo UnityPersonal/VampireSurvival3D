@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae2fd8e086a5f94991b50e5ca890322, type: 3}
+  m_Name: Earthworm animations
+  m_EditorClassIdentifier: 
+  AnimationFPS: 30
+  Animations:
+  - Name: Walk
+    Meshes:
+    - {fileID: 4300000, guid: a7da440e1f2ff0f4d90027686a625d68, type: 2}
+    - {fileID: 4300000, guid: 8eaa6411c1ffe104b9c51fa1808d2796, type: 2}
+    - {fileID: 4300000, guid: 0c73f9dee8f7d024ba7863f4533e62fc, type: 2}
+    - {fileID: 4300000, guid: 199efa4f487d6e046b8b357b80f7fe72, type: 2}
+    - {fileID: 4300000, guid: 9ad20733ea809254ea4d54ad357f9f96, type: 2}
+    - {fileID: 4300000, guid: df550df3462ab394e82de7f86addbd3d, type: 2}
+    - {fileID: 4300000, guid: b503241cf0d6c4a4ab33b13bfc54eafd, type: 2}
+    - {fileID: 4300000, guid: 91aabc48923d20541a0151716bb5e16b, type: 2}
+    - {fileID: 4300000, guid: e8ab611a2dfd0fd4d99c3d0379acb44a, type: 2}
+    - {fileID: 4300000, guid: 8850e3da8b3383f4e87e12ff2f32ceb2, type: 2}
+    - {fileID: 4300000, guid: 522897fd630b5ea49ae2cdb1c82a8440, type: 2}
+    - {fileID: 4300000, guid: 009f3ceedbd938b45ab469400dffbaaa, type: 2}
+    - {fileID: 4300000, guid: db897de2aa2990f408183d5867cce619, type: 2}
+    - {fileID: 4300000, guid: f6343ac6044d8f243bc09103805aa478, type: 2}
+    - {fileID: 4300000, guid: d350a9f7c12a0704caf0a87991f72ec3, type: 2}
+    - {fileID: 4300000, guid: 64a33bc00f38d6948a98ac631c0696a9, type: 2}
+    - {fileID: 4300000, guid: 8512d60e47ccb4b4da08a43889c3e4c4, type: 2}
+    - {fileID: 4300000, guid: 1c5991fd546bbd24a98461f3ddf3f32c, type: 2}
+    - {fileID: 4300000, guid: 25e3c1ba8dd638d46bbef6a83efd0027, type: 2}
+    - {fileID: 4300000, guid: dd188840251c37f469f9a9dbbcf1873f, type: 2}
+    - {fileID: 4300000, guid: 019a8ec79ec23064d8b4f914b5114019, type: 2}
+    - {fileID: 4300000, guid: d599bf2c2cad4d642b90af9c2dca7be1, type: 2}
+    - {fileID: 4300000, guid: 423d29d345e65164089d49fd3ed7a3f0, type: 2}
+    - {fileID: 4300000, guid: d5de22af474075a4c8a81d933da8f15d, type: 2}
+    - {fileID: 4300000, guid: 21a6d7dcda4f18d43a99f58cb6ae4190, type: 2}

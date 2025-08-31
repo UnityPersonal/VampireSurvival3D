@@ -1,140 +1,175 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Animations; // if needed
 
 public class AnimatedMeshEditorWindow : EditorWindow
 {
     [MenuItem("Tools/Animated Mesh Creator")]
     public static void CreateEditorWindow()
     {
-        EditorWindow window = GetWindow<AnimatedMeshEditorWindow>();
+        var window = GetWindow<AnimatedMeshEditorWindow>();
         window.titleContent = new GUIContent("Animated Mesh Editor");
     }
 
     private GameObject AnimatedModel;
     private int AnimationFPS = 30;
     private string Name;
-    private bool Optimize = false;
+    private bool Optimize = false; // consider removing; deprecated
     private bool DryRun = false;
 
     private const string BASE_PATH = "Assets/Animated Models/";
 
-    private void OnGUI()
+    void OnGUI()
     {
-        GameObject newAnimatedModel = EditorGUILayout.ObjectField("Animated Model", AnimatedModel, typeof(GameObject), true) as GameObject;
-        if (newAnimatedModel != AnimatedModel)
-        {
+        var newAnimatedModel = (GameObject)EditorGUILayout.ObjectField("Animated Model", AnimatedModel, typeof(GameObject), true);
+        if (newAnimatedModel != AnimatedModel && newAnimatedModel != null)
             Name = newAnimatedModel.name + " animations";
-        }
 
-        Animator animator = newAnimatedModel == null ? null : newAnimatedModel.GetComponentInChildren<Animator>();
         AnimatedModel = newAnimatedModel;
+        var animator = AnimatedModel ? AnimatedModel.GetComponentInChildren<Animator>() : null;
 
         Name = EditorGUILayout.TextField("Name", Name);
         AnimationFPS = EditorGUILayout.IntSlider("Animation FPS", AnimationFPS, 1, 100);
-        Optimize = EditorGUILayout.Toggle("Optimize", Optimize);
+        Optimize = EditorGUILayout.Toggle("Optimize (deprecated)", Optimize);
         DryRun = EditorGUILayout.Toggle("Dry Run", DryRun);
 
-        GUI.enabled = newAnimatedModel != null && animator.runtimeAnimatorController != null;
+        GUI.enabled = (AnimatedModel && animator && animator.runtimeAnimatorController);
         if (GUILayout.Button("Generate ScriptableObjects"))
         {
-            if (newAnimatedModel == null)
-            {
-                return;
-            }
-
+            if (string.IsNullOrEmpty(Name)) Name = "AnimatedMesh";
             GenerateFolderPaths(BASE_PATH + Name);
+            // 한 번만 코루틴 실행
             EditorCoroutineUtility.StartCoroutine(GenerateModels(animator, DryRun), this);
-            GenerateModels(animator, DryRun);
         }
         GUI.enabled = true;
+
         if (GUILayout.Button("Clear progress bar"))
-        {
             EditorUtility.ClearProgressBar();
-        }
     }
 
-    private void GenerateFolderPaths(string FullPath)
+    private void GenerateFolderPaths(string fullPath)
     {
-        string[] requiredFolders = FullPath.Split("/");
-        string path = string.Empty;
-        for (int i = 0; i < requiredFolders.Length; i++)
+        var parts = fullPath.Split('/');
+        var path = "";
+        for (int i = 0; i < parts.Length; i++)
         {
-            path += requiredFolders[i];
+            if (string.IsNullOrEmpty(parts[i])) continue;
+            path = (i == 0) ? parts[i] : $"{path}/{parts[i]}";
             if (!AssetDatabase.IsValidFolder(path))
             {
-                System.IO.Directory.CreateDirectory(path);
+                var parent = System.IO.Path.GetDirectoryName(path).Replace("\\", "/");
+                var folder = System.IO.Path.GetFileName(path);
+                if (!string.IsNullOrEmpty(parent) && AssetDatabase.IsValidFolder(parent))
+                    AssetDatabase.CreateFolder(parent, folder);
             }
         }
     }
 
-    private IEnumerator GenerateModels(Animator Animator, bool DryRun)
+    private System.Collections.IEnumerator GenerateModels(Animator animator, bool dryRun)
     {
-        AnimatedMeshScriptableObject scriptableObject = CreateInstance<AnimatedMeshScriptableObject>();
-        scriptableObject.AnimationFPS = AnimationFPS;
+        // 안전장치: 에디터 샘플링 모드 진입
+        AnimationMode.StartAnimationMode();
 
-        Debug.Log($"Found {Animator.runtimeAnimatorController.animationClips.Length} clips. Creating SO with name \"{Name}\" with Animation FPS {AnimationFPS}");
-        int clipIndex = 1;
+        // 오프스크린 업데이트 강제
+        foreach (var smr in AnimatedModel.GetComponentsInChildren<SkinnedMeshRenderer>())
+            smr.updateWhenOffscreen = true;
 
-        string parentFolder = "Assets/Animated Models/" + Name + "/";
+        // 애니메이터 컷팅 무시
+        var prevCulling = animator.cullingMode;
+        animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
 
-        foreach (AnimationClip clip in Animator.runtimeAnimatorController.animationClips)
+        var so = CreateInstance<AnimatedMeshScriptableObject>();
+        so.AnimationFPS = AnimationFPS;
+
+        var clips = animator.runtimeAnimatorController.animationClips;
+        var parentFolder = $"{BASE_PATH}{Name}/";
+
+        int clipIndex = 0;
+
+        try
         {
-            Debug.Log($"Processing clip {clipIndex}: \"{clip.name}\". Length: {clip.length:N4}.");
-            EditorUtility.DisplayProgressBar("Processing Animations", $"Processing animation {clip.name} ({clipIndex} / {Animator.runtimeAnimatorController.animationClips.Length})", clipIndex / (float)Animator.runtimeAnimatorController.animationClips.Length);
+            AssetDatabase.StartAssetEditing();
 
-            List<Mesh> meshes = new();
-            AnimatedMeshScriptableObject.Animation animation = new();
-            animation.Name = clip.name;
-            float increment = 1f / AnimationFPS;
-            Animator.Play(clip.name);
-
-            for (float time = increment; time < clip.length; time += increment)
+            foreach (var clip in clips)
             {
-                Debug.Log($"Processing {clip.name} frame {(time):N4}");
-                Animator.Update(increment);
-                if (DryRun)
-                {
-                    yield return new WaitForSeconds(increment);
-                }
-                foreach (SkinnedMeshRenderer skinnedMeshRenderer in AnimatedModel.GetComponentsInChildren<SkinnedMeshRenderer>())
-                {
-                    Mesh mesh = new Mesh();
-                    skinnedMeshRenderer.BakeMesh(mesh, true);
+                clipIndex++;
+                var msg = $"Processing animation {clip.name} ({clipIndex} / {clips.Length})";
+                Debug.Log(msg);
+                EditorUtility.DisplayProgressBar("Processing Animations", msg, clipIndex / (float)clips.Length);
 
-                    if (Optimize)
-                    {
-                        mesh.Optimize(); // maybe saves
-                    }
+                var meshes = new List<Mesh>();
+                var anim = new AnimatedMeshScriptableObject.Animation { Name = clip.name };
 
-                    if (!DryRun)
+                float dt = 1f / AnimationFPS;
+                float tMax = Mathf.Max(clip.length, dt); // 방어적
+
+                // 애니메이션 샘플링 루프
+                for (float t = 0f; t < tMax; t += dt)
+                {
+                    // 에디터 전용 정확 샘플링
+                    AnimationMode.BeginSampling();
+                    AnimationMode.SampleAnimationClip(AnimatedModel, clip, t);
+                    AnimationMode.EndSampling();
+
+                    // 바로 베이크
+                    foreach (var smr in AnimatedModel.GetComponentsInChildren<SkinnedMeshRenderer>())
                     {
-                        if (!AssetDatabase.IsValidFolder(parentFolder + clip.name))
+                        var mesh = new Mesh();
+#if UNITY_2021_2_OR_NEWER
+                        smr.BakeMesh(mesh, true); // scale 적용
+#else
+                        smr.BakeMesh(mesh);
+#endif
+                        if (Optimize)
                         {
-                            Debug.Log("Path doesn't exist for clip. Creating folder: " + parentFolder + clip.name);
-                            System.IO.Directory.CreateDirectory(parentFolder + clip.name);
+#if UNITY_2020_2_OR_NEWER
+                            // Optimize()는 deprecated — 필요하면 아래 두 개로 대체
+                            MeshUtility.Optimize(mesh);
+#else
+                            mesh.Optimize();
+#endif
                         }
-                        AssetDatabase.CreateAsset(mesh, parentFolder + clip.name + $"/{time:N4}.asset");
+
+                        if (!dryRun)
+                        {
+                            var clipFolder = parentFolder + clip.name;
+                            if (!AssetDatabase.IsValidFolder(clipFolder))
+                            {
+                                var parent = System.IO.Path.GetDirectoryName(clipFolder).Replace("\\", "/");
+                                var folder = System.IO.Path.GetFileName(clipFolder);
+                                AssetDatabase.CreateFolder(parent, folder);
+                            }
+                            var assetPath = $"{clipFolder}/{t:F4}.asset";
+                            AssetDatabase.CreateAsset(mesh, assetPath);
+                        }
+                        meshes.Add(mesh);
                     }
-                    meshes.Add(mesh);
+
+                    if (dryRun)
+                        yield return new EditorWaitForSeconds(dt);
                 }
+
+                anim.Meshes = meshes;
+                so.Animations.Add(anim);
             }
-            Debug.Log($"Setting {clip.name} to have {meshes.Count} meshes");
-            animation.Meshes = meshes;
-            scriptableObject.Animations.Add(animation);
-            clipIndex++;
+        }
+        finally
+        {
+            AssetDatabase.StopAssetEditing();
+            AnimationMode.StopAnimationMode();
+            animator.cullingMode = prevCulling;
+            EditorUtility.ClearProgressBar();
         }
 
-        EditorUtility.ClearProgressBar();
-
-        if (!DryRun)
+        if (!dryRun)
         {
-            Debug.Log($"Creating asset with {scriptableObject.Animations.Count} animations and {scriptableObject.Animations.Sum((item) => item.Meshes.Count)} meshes");
-            EditorUtility.SetDirty(scriptableObject);
-            AssetDatabase.CreateAsset(scriptableObject, BASE_PATH + Name + ".asset");
+            var soPath = $"{BASE_PATH}{Name}.asset";
+            Debug.Log($"Creating asset: {soPath} (animations={so.Animations.Count}, meshes={so.Animations.Sum(a=>a.Meshes.Count)})");
+            AssetDatabase.CreateAsset(so, soPath);
+            EditorUtility.SetDirty(so);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }

@@ -16,6 +16,7 @@ MonoBehaviour:
   Animations:
   - Name: Walk
     Meshes:
+    - {fileID: 4300000, guid: 57550859918039241aeb34feedad2e0f, type: 2}
     - {fileID: 4300000, guid: a73864cbf2972a24a9511b3a62eb2dbc, type: 2}
     - {fileID: 4300000, guid: 5d0f7b40213f886478feeef38bf85c58, type: 2}
     - {fileID: 4300000, guid: 47c102c5ff7e8da4387a010d6b6f8e12, type: 2}

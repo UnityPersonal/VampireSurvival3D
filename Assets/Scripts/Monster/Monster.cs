@@ -21,8 +21,7 @@ public class Monster : MonoBehaviour
     
     private Transform playerTransform;
     
-    [SerializeField, Required] Animator animator;
-    [SerializeField] int frameInterval = 5;
+   [SerializeField] int frameInterval = 5;
 
     private const float radiusDestination = 0.2f;
     

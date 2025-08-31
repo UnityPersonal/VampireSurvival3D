@@ -1,36 +1,45 @@
+using System;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class AnimatedMesh : MonoBehaviour
 {
     [SerializeField]
-    private AnimatedMeshScriptableObject AnimationSO;
-    private MeshFilter Filter;
+    public AnimatedMeshScriptableObject AnimationSO;
+    public MeshFilter Filter;
+    private MeshRenderer Renderer;
 
     [Header("Debug")]
     [SerializeField]
-    private int Tick = 1;
+    public int Tick = 1;
     [SerializeField]
-    private int AnimationIndex;
-    [SerializeField]
-    private string AnimationName;
-    private List<Mesh> AnimationMeshes;
+    public int AnimationIndex;
+    [SerializeField] public string AnimationName;
+    [ReadOnly] public List<Mesh> AnimationMeshes;
 
     public delegate void AnimationEndEvent(string Name);
     public event AnimationEndEvent OnAnimationEnd;
 
-    private float LastTickTime;
-
+    [ReadOnly] public float LastTickTime;
+    
+    [ReadOnly] public bool IsAnimating = false;
 
     private void Awake()
     {
         Filter = GetComponent<MeshFilter>();
+        Renderer = GetComponent<MeshRenderer>();
+        if(!string.IsNullOrEmpty(AnimationName))
+        {
+            Play(AnimationName);
+        }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Play(string AnimationName)
     {
-        if (AnimationName != this.AnimationName)
+        //if (AnimationName != this.AnimationName)
         {
             this.AnimationName = AnimationName;
             Tick = 1;
@@ -40,11 +49,15 @@ public class AnimatedMesh : MonoBehaviour
             if (string.IsNullOrEmpty(animation.Name))
             {
                 Debug.LogError($"Animated model {name} does not have an animation baked for {AnimationName}!");
+                return;
             }
+            
+            AnimatedMeshScheduleJob.RegistMehs(this);
+            
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (AnimationMeshes != null)
         {
@@ -62,5 +75,5 @@ public class AnimatedMesh : MonoBehaviour
             }
             Tick++;
         }
-    }
+    }*/
 }
