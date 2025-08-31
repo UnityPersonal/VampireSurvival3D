@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TabWhere",
+                    "type": "Value",
+                    "id": "e250cb43-71ca-4fff-b486-82b6038d84c5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -170,7 +179,18 @@
                     "name": "",
                     "id": "c902fc96-cdca-4285-843f-2373e537918a",
                     "path": "<Touchscreen>/Press",
-                    "interactions": "",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46f6c378-f514-42e0-8632-271bd59ef9c9",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "TabOn",
@@ -181,10 +201,32 @@
                     "name": "",
                     "id": "3018f205-1588-4f79-83e8-cdfd1df230c9",
                     "path": "<Touchscreen>/Press",
-                    "interactions": "MultiTap",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "TabOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd07fd28-aacd-45a3-bce8-dfc43e8fa99e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0be0cafb-3e57-4f01-b690-7332b893fc34",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabWhere",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

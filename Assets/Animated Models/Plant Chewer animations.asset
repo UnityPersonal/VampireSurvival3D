@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae2fd8e086a5f94991b50e5ca890322, type: 3}
+  m_Name: Plant Chewer animations
+  m_EditorClassIdentifier: 
+  AnimationFPS: 30
+  Animations:
+  - Name: Walk
+    Meshes:
+    - {fileID: 4300000, guid: a73864cbf2972a24a9511b3a62eb2dbc, type: 2}
+    - {fileID: 4300000, guid: 5d0f7b40213f886478feeef38bf85c58, type: 2}
+    - {fileID: 4300000, guid: 47c102c5ff7e8da4387a010d6b6f8e12, type: 2}
+    - {fileID: 4300000, guid: c3ecc06d6a6da0b429d61df9005e56c2, type: 2}
+    - {fileID: 4300000, guid: ce073d63f29ac384b983de967147a05f, type: 2}
+    - {fileID: 4300000, guid: 5cc1b0b739401754bbcdeec7565c7d40, type: 2}
+    - {fileID: 4300000, guid: f514573765ad0b641953039f6b07f936, type: 2}
+    - {fileID: 4300000, guid: 41ece49051b799a42ad3771f16bfccc0, type: 2}
+    - {fileID: 4300000, guid: 80241f3397cc47141b1745cd7fb9095b, type: 2}
+    - {fileID: 4300000, guid: 090e47955dccc8845adb05bfc573e0d8, type: 2}
+    - {fileID: 4300000, guid: cee1280fb12b74948ac2bf0f2c1ec00b, type: 2}
+    - {fileID: 4300000, guid: 94c7258ba2aa51d4ca0314f9ddff0d3f, type: 2}
+    - {fileID: 4300000, guid: 88500eaa1d9c23c46a437fe9d7699ff1, type: 2}
+    - {fileID: 4300000, guid: 9bb383e06801a7f4a9d3330674d1bd4a, type: 2}
+    - {fileID: 4300000, guid: b5da14e9b2cae2740913bbcbe1e79c48, type: 2}
+    - {fileID: 4300000, guid: 320f4234a66dcc144a922786dcba9baf, type: 2}
+    - {fileID: 4300000, guid: cc3dd772077fee94bab47bd6e3cb4c0d, type: 2}
+    - {fileID: 4300000, guid: fa68e00fc7a89dd449445e4272262b16, type: 2}
+    - {fileID: 4300000, guid: 67d49271e6f04a9479f4550765fe88f9, type: 2}
+    - {fileID: 4300000, guid: 0138414cb424aaa489be206d8578d573, type: 2}
+    - {fileID: 4300000, guid: bf66e458b8eeef94782f2be41cd2250c, type: 2}
+    - {fileID: 4300000, guid: a850943cdd1d8f8428e7162c14887ced, type: 2}
+    - {fileID: 4300000, guid: 3939034c4a35fb2478c9b910918e0e37, type: 2}
+    - {fileID: 4300000, guid: f5ff0af86ab1d254d9d1de0b374ef814, type: 2}
