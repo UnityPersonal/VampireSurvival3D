@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,11 +11,15 @@ public class Monster : MonoBehaviour , ICombatable
 {
     static int monsterIdGenerator = 0;
     
+    static readonly int FlickerID = Shader.PropertyToID("_FlickerFactor"); 
+    
     private int mosternUID = 0;
     private Vector3 lastRequestedPos;
     [SerializeField, Required] NavMeshAgent agent;
     [SerializeField, Required] AnimatedMesh animMesh;
     [SerializeField, Required] Collider monsterCollider;
+    [SerializeField, Required] Renderer monsterMeshRenderer;
+    private MaterialPropertyBlock mpb;
     public NavMeshAgent Agent => agent;
     
     private static Camera mainCamera;
@@ -38,6 +43,8 @@ public class Monster : MonoBehaviour , ICombatable
 
         agent.avoidancePriority = Random.Range(50, 1000);
         animMesh.Play("Walk");
+        
+        mpb = new MaterialPropertyBlock();        
     }
 
     private void OnEnable()
@@ -75,17 +82,35 @@ public class Monster : MonoBehaviour , ICombatable
 
     public Transform CombatTransform => transform;
     public Collider CombatCollider => monsterCollider;
+    
+    Coroutine coroutine;
     public void TakeDamage(DealEventArgs args)
     {
         hp -= args.DealDamage;
         if (hp <= 0)
         {
             Destroy(gameObject);
-            // TODO :: death 
         }
         else
         {
+            if (coroutine is not null)
+            {
+                StopCoroutine(coroutine);
+            }
+
+            coroutine = StartCoroutine(FlickerCoroutine());
             // TODO :: take damage effect
         }
+    }
+
+    IEnumerator FlickerCoroutine()
+    {
+        monsterMeshRenderer.GetPropertyBlock(mpb);
+        mpb.SetFloat(FlickerID, 1);
+        monsterMeshRenderer.SetPropertyBlock(mpb);
+        yield return new WaitForSeconds(0.2f);
+        monsterMeshRenderer.GetPropertyBlock(mpb);
+        mpb.SetFloat(FlickerID, 0);
+        monsterMeshRenderer.SetPropertyBlock(mpb);
     }
 }

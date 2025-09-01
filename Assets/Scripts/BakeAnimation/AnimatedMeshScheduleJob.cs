@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Unity.VisualStudio.Editor;
 using Unity.Collections;
 using UnityEngine;
 using Unity.Jobs;
 using Unity.Burst;
 
-public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
+public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJob>
 {
     List<AnimatedMeshProxy> requestsForRegist = new List<AnimatedMeshProxy>();
     List<uint> requestsForUnregist = new List<uint>();
@@ -137,7 +136,6 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
         // so a default JobHandle is sufficient.
         JobHandle dependencyJobHandle = default;
         
-        Debug.Log($"Scheduled Job Lookup Count: {lookups.Length}");
         handle = animatedMeshJob.ScheduleByRef(animatedMeshList.Count, 128, dependencyJobHandle);
         
     }
@@ -155,10 +153,6 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
             if(proxy.isReleased) continue;
             
             var anim = proxy.animatedMesh;
-            if (anim is null)
-            {
-                Debug.LogError($" anim is null");
-            }
             anim.AnimationIndex = result.currentClip;
             anim.Filter.mesh = anim.AnimationMeshes[result.currentClip];
             anim.LastTickTime = result.lastTickTime;
@@ -172,6 +166,40 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
         
         lookups.Dispose();
         results.Dispose();
+    }
+    
+    void OnDisable()
+    {
+        SafeCompleteAndDispose();
+    }
+    void OnApplicationQuit()
+    {
+        SafeCompleteAndDispose();
+    }
+
+    protected override void InitializeSingleton()
+    {
+    }
+
+    void OnDestroy()
+    {
+        SafeCompleteAndDispose();
+    }
+
+    void SafeCompleteAndDispose()
+    {
+        try
+        {
+            if (handle.IsCompleted == false) handle.Complete();
+        }
+        catch { /* 이미 끝난 상태면 무시 */ }
+
+        if (lookups.IsCreated) lookups.Dispose();
+        if (results.IsCreated) results.Dispose();
+
+        requestsForRegist.Clear();
+        requestsForUnregist.Clear();
+        animatedMeshList.Clear();
     }
 }
 

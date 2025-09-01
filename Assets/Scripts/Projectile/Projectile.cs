@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour , IDisposable
     {
         if( CombatManager.TryLookup(other , out ICombatable combatable))
         {
-            combatable.TakeDamage(new DealEventArgs(1f));
+            combatable.TakeDamage(new DealEventArgs(attackPower));
         }
         Dispose();
     }

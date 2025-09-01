@@ -95,10 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a45ba688b3fb044a2bbbcd3d2b0f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDisposed: 0
   lifetime: 3
   moveSpeed: 10
   rb: {fileID: 2904919773175319996}
   col: {fileID: 6839982422829247384}
+  attackPower: 1
 --- !u!1 &3879627063230213417
 GameObject:
   m_ObjectHideFlags: 0

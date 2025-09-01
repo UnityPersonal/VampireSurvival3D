@@ -1747,7 +1747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a33622992310145a4c64200edc74af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatedMeshList: []
 --- !u!4 &1288986578
 Transform:
   m_ObjectHideFlags: 0
@@ -2422,7 +2421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cf0ccb067c8054fb8e3dda94325c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sample: {fileID: 0}
+  sample: {fileID: 7825208633582385610, guid: 60835b7608e88f7489250211caaa8903, type: 3}
 --- !u!114 &1953064758
 MonoBehaviour:
   m_ObjectHideFlags: 0
