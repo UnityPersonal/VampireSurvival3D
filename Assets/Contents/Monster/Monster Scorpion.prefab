@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1396311032101171746}
   - component: {fileID: 6044532950671056889}
   - component: {fileID: 4864438874935432384}
+  - component: {fileID: 5964255939118994598}
   m_Layer: 6
   m_Name: Monster Scorpion
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   animMesh: {fileID: 3933623075224314510}
   monsterCollider: {fileID: 4864438874935432384}
   monsterMeshRenderer: {fileID: 4241481272213306308}
+  behaviorGraphAgent: {fileID: 5964255939118994598}
   frameInterval: 5
   hp: 2
 --- !u!195 &6044532950671056889
@@ -205,3 +207,31 @@ CapsuleCollider:
   m_Height: 3.82
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5964255939118994598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285584526033206145}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: 189545955102583438, guid: 7db16f63753d6cf48a0b94a45c40291e, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 2509142743021781920
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2509142743021781920
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 8285584526033206145}

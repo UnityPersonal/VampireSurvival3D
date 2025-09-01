@@ -11,6 +11,7 @@ public class AnimatedMeshScriptableObject : ScriptableObject
     public struct Animation
     {
         public string Name;
+        public bool loop;
         public List<Mesh> Meshes;
     }
 }

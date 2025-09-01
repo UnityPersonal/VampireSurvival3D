@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Sirenix.OdinInspector;
+using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Profiling;
@@ -19,6 +20,8 @@ public class Monster : MonoBehaviour , ICombatable
     [SerializeField, Required] AnimatedMesh animMesh;
     [SerializeField, Required] Collider monsterCollider;
     [SerializeField, Required] Renderer monsterMeshRenderer;
+    
+    [SerializeField] BehaviorGraphAgent behaviorGraphAgent;
     private MaterialPropertyBlock mpb;
     public NavMeshAgent Agent => agent;
     
@@ -44,7 +47,9 @@ public class Monster : MonoBehaviour , ICombatable
         agent.avoidancePriority = Random.Range(50, 1000);
         animMesh.Play("Walk");
         
-        mpb = new MaterialPropertyBlock();        
+        mpb = new MaterialPropertyBlock();
+
+        behaviorGraphAgent.BlackboardReference.SetVariableValue("Player", Player.Instance.gameObject);
     }
 
     private void OnEnable()
@@ -66,7 +71,6 @@ public class Monster : MonoBehaviour , ICombatable
                 UpdateDestination();
             }
         }
-
     }
 
     void UpdateDestination()

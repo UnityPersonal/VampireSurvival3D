@@ -60,8 +60,11 @@ public class AnimatedMesh : MonoBehaviour
                 Debug.LogError($"Animated model {name} does not have an animation baked for {AnimationName}!");
                 return;
             }
-            
-            animatedMeshUID = AnimatedMeshScheduleJob.RegistMesh(this);
+
+            if (animatedMeshUID == 0)
+            {
+                animatedMeshUID = AnimatedMeshScheduleJob.RegistMesh(this);
+            }
         }
     }
 

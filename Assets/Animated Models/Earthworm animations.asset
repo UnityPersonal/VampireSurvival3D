@@ -15,6 +15,7 @@ MonoBehaviour:
   AnimationFPS: 30
   Animations:
   - Name: Walk
+    loop: 1
     Meshes:
     - {fileID: 4300000, guid: a7da440e1f2ff0f4d90027686a625d68, type: 2}
     - {fileID: 4300000, guid: 8eaa6411c1ffe104b9c51fa1808d2796, type: 2}

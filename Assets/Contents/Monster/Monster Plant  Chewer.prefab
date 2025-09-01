@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8708006946151826235}
   - component: {fileID: 1035325630430678756}
   - component: {fileID: 447223447829883925}
+  - component: {fileID: 9007194976890337549}
   m_Layer: 6
   m_Name: Monster Plant  Chewer
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   animMesh: {fileID: 7400306136430959449}
   monsterCollider: {fileID: 447223447829883925}
   monsterMeshRenderer: {fileID: 7551295625050562088}
+  behaviorGraphAgent: {fileID: 9007194976890337549}
   frameInterval: 3
   hp: 2
 --- !u!195 &1035325630430678756
@@ -96,6 +98,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &9007194976890337549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657236800418992009}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Graph: {fileID: 189545955102583438, guid: 7db16f63753d6cf48a0b94a45c40291e, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 2509142743021781304
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2509142743021781304
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 8657236800418992009}
 --- !u!1001 &521275275171184262
 PrefabInstance:
   m_ObjectHideFlags: 0
