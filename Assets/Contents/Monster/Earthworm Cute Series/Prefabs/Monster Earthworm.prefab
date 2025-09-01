@@ -150,9 +150,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSO: {fileID: 11400000, guid: eebe6f3800a210443b5213dd9aa16f93, type: 2}
+  Filter: {fileID: 0}
   Tick: 1
   AnimationIndex: 0
   AnimationName: Walk
+  AnimationMeshes: []
+  LastTickTime: 0
+  IsAnimating: 0
 --- !u!23 &5117161599777188674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -176,7 +180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de43b7af73913604c847889f8209a9f8, type: 2}
+  - {fileID: 2100000, guid: a460d59718256384c825927b4fed5538, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

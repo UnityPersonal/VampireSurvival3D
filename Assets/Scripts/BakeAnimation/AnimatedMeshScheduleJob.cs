@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using Unity.Jobs;
+using Unity.Burst;
 
 public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
 {
@@ -31,10 +32,13 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
         public int currentClip;
     }
     
+    [BurstCompile]
     public struct AnimatedMeshJob : IJobParallelFor
     {
         public float time;
+        [ReadOnly]
         public NativeArray<JobLookup> lookups;
+        [WriteOnly]
         public NativeArray<JobResult> results;
         public void Execute(int index)
         {
