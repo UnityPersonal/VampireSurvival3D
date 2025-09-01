@@ -42,6 +42,7 @@ public abstract class GameObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     private T CreatePoolItem()
     {
         T instance = InstantiatePoolItem(sample);
+        Debug.Assert( instance != sample);
         if (instance.TryGetComponent(out IPoolable<T> poolable))
         {
             poolable.OnDispose = () => { pool.Release(instance); };
