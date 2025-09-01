@@ -52,7 +52,7 @@ MonoBehaviour:
   monsterCollider: {fileID: 2144797044459616517}
   monsterMeshRenderer: {fileID: 5117161599777188674}
   frameInterval: 5
-  hp: 10
+  hp: 2
 --- !u!195 &3414866103353051580
 NavMeshAgent:
   m_ObjectHideFlags: 0

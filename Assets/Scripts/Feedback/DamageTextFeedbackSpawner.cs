@@ -8,7 +8,7 @@ public class DamageTextFeedbackSpawner : GameObjectPool<DamageTextFeedback>
     protected override DamageTextFeedback InstantiatePoolItem(DamageTextFeedback sample)
     {
         var instance = Instantiate(sample, transform);
-        return sample;
+        return instance;
     }
 
     private void Start()
@@ -19,6 +19,7 @@ public class DamageTextFeedbackSpawner : GameObjectPool<DamageTextFeedback>
     private void OnTakeDamage(TakeDamageEventArgs obj)
     {
         var feedback = PopPoolItem();
+        Debug.Log($" Spawn Take Damage : {feedback} {obj.Taker}");
         feedback.Setup(obj.Taker.CombatTransform, obj.DamageTaken.ToString());
     }
 }

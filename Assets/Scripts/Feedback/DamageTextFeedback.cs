@@ -32,15 +32,25 @@ public class DamageTextFeedback : MonoBehaviour , IPoolable<DamageTextFeedback> 
     // Update is called once per frame
     void Update()
     {
+        if (!target)
+        {
+            Dispose();
+            return;
+        }
         var worldPoint = target.position;
         var screenPoint = mainCamera.WorldToScreenPoint(worldPoint);
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRectTransform, screenPoint, null, out Vector2 localPoint))
         {
             rectTransform.anchoredPosition = localPoint;
         }
+        else
+        {
+            Debug.LogError("Screen point is null");
+            Dispose();
+        }
         
         
-        if (Time.time <= startTime + duration)
+        if (Time.time >= startTime + duration)
         {
             Dispose();
         }

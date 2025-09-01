@@ -52,20 +52,8 @@ public abstract class GameObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         }
         return instance;
     }
-
-    private void DisposePoolItem(IPoolable<T> obj)
-    {
-        
-        
-    }
-
     protected abstract T InstantiatePoolItem(T sample);
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
 

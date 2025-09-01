@@ -99,7 +99,8 @@ public class Monster : MonoBehaviour , ICombatable
             }
 
             coroutine = StartCoroutine(FlickerCoroutine());
-            // TODO :: take damage effect
+            
+            GameEventManager.Publish(new TakeDamageEventArgs(this, (int)args.DealDamage));
         }
     }
 

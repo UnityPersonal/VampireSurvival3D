@@ -172,8 +172,10 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
     {
         SafeCompleteAndDispose();
     }
-    void OnApplicationQuit()
+
+    protected override void OnApplicationQuit()
     {
+        base.OnApplicationQuit();
         SafeCompleteAndDispose();
     }
 
