@@ -11,7 +11,8 @@ public class Projectile : MonoBehaviour , IDisposable
     [SerializeField] private float moveSpeed;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider col;
-
+    [SerializeField] private float attackPower = 1f;
+    
     public void Dispose()
     {
         if (isDisposed == false)
@@ -48,6 +49,10 @@ public class Projectile : MonoBehaviour , IDisposable
     
     private void OnTriggerEnter(Collider other)
     {
+        if( CombatManager.TryLookup(other , out ICombatable combatable))
+        {
+            combatable.TakeDamage(new DealEventArgs(1f));
+        }
         Dispose();
     }
 

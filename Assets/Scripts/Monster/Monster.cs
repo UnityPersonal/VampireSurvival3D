@@ -6,15 +6,15 @@ using UnityEngine.Profiling;
 using Random = UnityEngine.Random;
 
 //[RequireComponent(typeof(NavMeshAgent))]
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour , ICombatable
 {
     static int monsterIdGenerator = 0;
     
-    //Required ,SerializeField] private Animator animator;
-    [SerializeField] private int destinationUpdateFramePerCount = 1;
     private int mosternUID = 0;
     private Vector3 lastRequestedPos;
     [SerializeField, Required] NavMeshAgent agent;
+    [SerializeField, Required] AnimatedMesh animMesh;
+    [SerializeField, Required] Collider monsterCollider;
     public NavMeshAgent Agent => agent;
     
     private static Camera mainCamera;
@@ -24,6 +24,8 @@ public class Monster : MonoBehaviour
    [SerializeField] int frameInterval = 5;
 
     private const float radiusDestination = 0.2f;
+
+    [SerializeField] private float hp;
     
     private void Start()
     {
@@ -35,6 +37,17 @@ public class Monster : MonoBehaviour
         playerTransform = Player.Instance.transform;
 
         agent.avoidancePriority = Random.Range(50, 1000);
+        animMesh.Play("Walk");
+    }
+
+    private void OnEnable()
+    {
+        CombatManager.Regist(monsterCollider, this);
+    }
+
+    private void OnDisable()
+    {
+        CombatManager.Unregist(monsterCollider);
     }
 
     void Update()
@@ -60,4 +73,19 @@ public class Monster : MonoBehaviour
         agent.SetDestination(destination);
     }
 
+    public Transform CombatTransform => transform;
+    public Collider CombatCollider => monsterCollider;
+    public void TakeDamage(DealEventArgs args)
+    {
+        hp -= args.DealDamage;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            // TODO :: death 
+        }
+        else
+        {
+            // TODO :: take damage effect
+        }
+    }
 }

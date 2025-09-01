@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.Collections;
 using UnityEngine;
 using Unity.Jobs;
@@ -7,19 +9,50 @@ using Unity.Burst;
 
 public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
 {
-    AnimatedMesh animatedMesh;
-    public List<AnimatedMesh> animatedMeshList = new List<AnimatedMesh>();
+    List<AnimatedMeshProxy> requestsForRegist = new List<AnimatedMeshProxy>();
+    List<uint> requestsForUnregist = new List<uint>();
+    
+    public Dictionary<uint, AnimatedMeshProxy> animatedMeshList = new();
     JobHandle handle;
+    
+    public class AnimatedMeshProxy
+    {
+        private static uint uidGenerator = 1;
+        public uint uid;
+        public bool isReleased;
+        public AnimatedMesh animatedMesh;
+        public AnimatedMeshProxy(AnimatedMesh animatedMesh)
+        {
+            isReleased = false;
+            uid = uidGenerator++;
+            this.animatedMesh = animatedMesh;
+        }
+    }
 
-    public static void RegistMehs(AnimatedMesh animatedMesh)
+    public static uint RegistMesh(AnimatedMesh animatedMesh)
+    {
+        if (Instance == null)
+            return 0;
+        
+        var proxy = new AnimatedMeshProxy(animatedMesh);
+        Instance.requestsForRegist.Add(proxy);
+        
+        return proxy.uid;
+    }
+
+    public static void UnregistMesh(uint uid)
     {
         if (Instance == null)
             return;
-        Instance.animatedMeshList.Add(animatedMesh);
+        
+        Instance.requestsForUnregist.Add(uid);
     }
 
+    
+    
     public struct JobLookup
     {
+        public uint uid;
         public float lastTickTime;
         public float animationfps;
         public int clipCount;
@@ -28,6 +61,7 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
 
     public struct JobResult
     {
+        public uint uid;
         public float lastTickTime;
         public int currentClip;
     }
@@ -43,7 +77,7 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
         public void Execute(int index)
         {
             var lookup = lookups[index];
-            
+            uint uid =  lookup.uid;
             int resultClip = lookup.currentClip;
             float lastTickTime = lookup.lastTickTime;
             
@@ -59,6 +93,7 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
 
             results[index] = new JobResult
             {
+                uid = uid,
                 lastTickTime = lastTickTime,
                 currentClip = resultClip
             };
@@ -70,16 +105,21 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
     
     void Update()
     {
+        
         lookups = new NativeArray<JobLookup>(animatedMeshList.Count, Allocator.TempJob);
         results = new NativeArray<JobResult>(animatedMeshList.Count, Allocator.TempJob);
 
-        for (int i = 0; i < animatedMeshList.Count; i++)
+        var jobList = animatedMeshList.Values.ToArray();
+
+        for (int i = 0; i < jobList.Length; i++)
         {
-            var anim = animatedMeshList[i];
+            var proxy = jobList[i];
+            var anim = proxy.animatedMesh;
             lookups[i] = new JobLookup
             {
+                uid = proxy.uid,
                 lastTickTime = anim.LastTickTime,
-                animationfps = anim.AnimationSO.AnimationFPS,
+                animationfps = anim.AnimationSO.AnimationFPS ,
                 clipCount = anim.AnimationMeshes.Count,
                 currentClip = anim.AnimationIndex
             };
@@ -90,7 +130,6 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
             time = Time.time,
             lookups = lookups,
             results = results,
-            
         };
         
         // If this job required a previous job to complete before it could safely begin execution,
@@ -98,6 +137,7 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
         // so a default JobHandle is sufficient.
         JobHandle dependencyJobHandle = default;
         
+        Debug.Log($"Scheduled Job Lookup Count: {lookups.Length}");
         handle = animatedMeshJob.ScheduleByRef(animatedMeshList.Count, 128, dependencyJobHandle);
         
     }
@@ -106,16 +146,32 @@ public class AnimatedMeshScheduleJob : Singleton<AnimatedMeshScheduleJob>
     {
         handle.Complete();
 
+        requestsForUnregist.ForEach(request=> animatedMeshList[request].isReleased = true);
         for (int i = 0; i < results.Length; i++)
         {
-            var anim = animatedMeshList[i];
             var result = results[i];
+            var proxy =animatedMeshList[result.uid];
+            
+            if(proxy.isReleased) continue;
+            
+            var anim = proxy.animatedMesh;
+            if (anim is null)
+            {
+                Debug.LogError($" anim is null");
+            }
             anim.AnimationIndex = result.currentClip;
             anim.Filter.mesh = anim.AnimationMeshes[result.currentClip];
             anim.LastTickTime = result.lastTickTime;
         }
         
+        requestsForUnregist.ForEach(request=> animatedMeshList.Remove(request));
+        requestsForUnregist.Clear();
+        
+        requestsForRegist.ForEach(proxy => animatedMeshList[proxy.uid] = proxy);
+        requestsForRegist.Clear();
+        
         lookups.Dispose();
         results.Dispose();
     }
 }
+

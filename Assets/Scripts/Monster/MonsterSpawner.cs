@@ -2,6 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class MonsterSpawner : MonoBehaviour
@@ -19,17 +20,10 @@ public class MonsterSpawner : MonoBehaviour
         
     [SerializeField] private NavMeshSurface  navMesh;
 
+    private ObjectPool<Monster>[] mosterSamplePools;
+
     private void Start()
     {
-        /*for (int i = 0; i < maxSpawnCount; i++)
-        {
-            var spawnPosition = Player.Instance.transform.position;
-            var circle = Random.insideUnitCircle * spawnRadius;
-            spawnPosition.x += circle.x;
-            spawnPosition.z += circle.y;
-                
-            Instantiate(sample, spawnPosition, Quaternion.identity);
-        }*/
     }
 
     void Update()

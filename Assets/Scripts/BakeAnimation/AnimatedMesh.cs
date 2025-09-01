@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class AnimatedMesh : MonoBehaviour
 {
+    private static int uidgen = 1;
+    private int uid = 0;
     [SerializeField]
     public AnimatedMeshScriptableObject AnimationSO;
     public MeshFilter Filter;
@@ -28,13 +30,20 @@ public class AnimatedMesh : MonoBehaviour
 
     private void Awake()
     {
+        uid  = uidgen++;
+        gameObject.name = $"AnimatedMesh_{uid.ToString()}";
         Filter = GetComponent<MeshFilter>();
         Renderer = GetComponent<MeshRenderer>();
-        if(!string.IsNullOrEmpty(AnimationName))
-        {
-            Play(AnimationName);
-        }
     }
+
+    private uint animatedMeshUID = 0;
+
+    private void OnDisable()
+    {
+        if(animatedMeshUID != 0)
+            AnimatedMeshScheduleJob.UnregistMesh(animatedMeshUID);
+    }
+
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void Play(string AnimationName)
@@ -52,8 +61,7 @@ public class AnimatedMesh : MonoBehaviour
                 return;
             }
             
-            AnimatedMeshScheduleJob.RegistMehs(this);
-            
+            animatedMeshUID = AnimatedMeshScheduleJob.RegistMesh(this);
         }
     }
 
