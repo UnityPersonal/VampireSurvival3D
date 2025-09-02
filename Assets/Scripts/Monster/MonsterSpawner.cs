@@ -18,13 +18,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private float lastSpawnTime = 0f;
         
-    [SerializeField] private NavMeshSurface  navMesh;
-
     private ObjectPool<Monster>[] mosterSamplePools;
-
-    private void Start()
-    {
-    }
 
     void Update()
     {

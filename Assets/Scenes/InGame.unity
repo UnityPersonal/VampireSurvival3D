@@ -295,7 +295,7 @@ MonoBehaviour:
   - {fileID: 1396311032101171746, guid: b6f4def4c1003b6479bdcac3fd529c3a, type: 3}
   - {fileID: 3634194532164870416, guid: 561f28301f9d52f43b360492a51d127d, type: 3}
   maxSpawnCount: 1000
-  spawnPerCount: 50
+  spawnPerCount: 100
   spawnRadius: 10
   spawnInterval: 1
   navMesh: {fileID: 0}

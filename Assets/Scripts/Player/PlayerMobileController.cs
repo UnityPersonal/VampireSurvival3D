@@ -29,11 +29,11 @@ public class PlayerMobileController : OnScreenControl
     private InputAction _pressAction;
     private Vector2 _startScreenPos;
     private bool _pressed;
-    
-    
+
+
     [InputControl(layout = "Vector2")]
     [SerializeField]
-    private string controlPath;
+    private string stickControlPath;
 
     protected override void OnEnable()
     {
@@ -60,8 +60,8 @@ public class PlayerMobileController : OnScreenControl
    
     protected override string controlPathInternal
     {
-        get => controlPath;
-        set => controlPath = value;
+        get => stickControlPath;
+        set => stickControlPath = value;
     }
 
     private void OnPressStarted()

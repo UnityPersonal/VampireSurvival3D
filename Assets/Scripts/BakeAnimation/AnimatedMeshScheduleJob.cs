@@ -69,7 +69,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
 
     
     
-    public struct JobLookup
+    public struct AnimatedMeshJobLookup
     {
         public uint uid;
         public float lastTickTime;
@@ -79,7 +79,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         public bool isLoop;
     }
 
-    public struct JobResult
+    public struct AnimatedMeshJobResult
     {
         public uint uid;
         public float lastTickTime;
@@ -92,9 +92,9 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
     {
         public float time;
         [ReadOnly]
-        public NativeArray<JobLookup> lookups;
+        public NativeArray<AnimatedMeshJobLookup> lookups;
         [WriteOnly]
-        public NativeArray<JobResult> results;
+        public NativeArray<AnimatedMeshJobResult> results;
         public void Execute(int index)
         {
             var lookup = lookups[index];
@@ -120,7 +120,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
                 lastTickTime = time;
             }
 
-            results[index] = new JobResult
+            results[index] = new AnimatedMeshJobResult
             {
                 uid = uid,
                 lastTickTime = lastTickTime,
@@ -130,14 +130,14 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         }
     }
 
-    private NativeArray<JobLookup> lookups;
-    private NativeArray<JobResult> results;
+    private NativeArray<AnimatedMeshJobLookup> lookups;
+    private NativeArray<AnimatedMeshJobResult> results;
     
     void Update()
     {
         
-        lookups = new NativeArray<JobLookup>(animatedMeshList.Count, Allocator.TempJob);
-        results = new NativeArray<JobResult>(animatedMeshList.Count, Allocator.TempJob);
+        lookups = new NativeArray<AnimatedMeshJobLookup>(animatedMeshList.Count, Allocator.TempJob);
+        results = new NativeArray<AnimatedMeshJobResult>(animatedMeshList.Count, Allocator.TempJob);
 
         var jobList = animatedMeshList.Values.ToArray();
 
@@ -146,7 +146,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             var proxy = jobList[i];
             var anim = proxy.animatedMesh;
             
-            lookups[i] = new JobLookup
+            lookups[i] = new AnimatedMeshJobLookup
             {
                 uid = proxy.uid,
                 lastTickTime = anim.LastTickTime,

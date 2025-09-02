@@ -15,7 +15,7 @@ MonoBehaviour:
   AnimationFPS: 30
   Animations:
   - Name: Move
-    loop: 0
+    loop: 1
     Meshes:
     - {fileID: 4300000, guid: a7da440e1f2ff0f4d90027686a625d68, type: 2}
     - {fileID: 4300000, guid: 8eaa6411c1ffe104b9c51fa1808d2796, type: 2}
@@ -71,7 +71,7 @@ MonoBehaviour:
     - {fileID: 4300000, guid: b8a50d33a07796944b87b38b19081eac, type: 2}
     - {fileID: 4300000, guid: f8b40aa2a676612459b48a0c5a776ad6, type: 2}
   - Name: Idle
-    loop: 0
+    loop: 1
     Meshes:
     - {fileID: 4300000, guid: 4e4ad70556f920b498ca74b4aa167c42, type: 2}
     - {fileID: 4300000, guid: c7ca131711bded0448c5dcf4a93d54c3, type: 2}

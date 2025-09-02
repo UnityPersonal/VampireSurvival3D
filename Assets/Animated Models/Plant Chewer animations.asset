@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimationFPS: 30
   Animations:
-  - Name: Walk Forward In Place
-    loop: 0
+  - Name: Move
+    loop: 1
     Meshes:
     - {fileID: 4300000, guid: 57550859918039241aeb34feedad2e0f, type: 2}
     - {fileID: 4300000, guid: a73864cbf2972a24a9511b3a62eb2dbc, type: 2}
@@ -42,7 +42,7 @@ MonoBehaviour:
     - {fileID: 4300000, guid: a850943cdd1d8f8428e7162c14887ced, type: 2}
     - {fileID: 4300000, guid: 3939034c4a35fb2478c9b910918e0e37, type: 2}
     - {fileID: 4300000, guid: f5ff0af86ab1d254d9d1de0b374ef814, type: 2}
-  - Name: Bite Attack
+  - Name: Attack
     loop: 0
     Meshes:
     - {fileID: 4300000, guid: 246da8931cc75a84b9843b78646dd0aa, type: 2}
@@ -109,7 +109,7 @@ MonoBehaviour:
     - {fileID: 4300000, guid: 4ee16fc40eb6d4444a7dca0171ec017b, type: 2}
     - {fileID: 4300000, guid: 17000ce2ecd69d9499fe183fee2584c1, type: 2}
   - Name: Idle
-    loop: 0
+    loop: 1
     Meshes:
     - {fileID: 4300000, guid: fad88fb1bf1304046bbe04d17521f87e, type: 2}
     - {fileID: 4300000, guid: ff1b908daa3a2c5488947a907207d95c, type: 2}

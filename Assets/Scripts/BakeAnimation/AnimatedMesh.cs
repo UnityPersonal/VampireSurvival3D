@@ -20,8 +20,6 @@ public class AnimatedMesh : MonoBehaviour
     [SerializeField] public string AnimationName;
     [ReadOnly] public List<Mesh> AnimationMeshes;
 
-    public delegate void AnimationEndEvent(string Name);
-    public event AnimationEndEvent OnAnimationEnd;
 
     [ReadOnly] public float LastTickTime;
     public bool isLooping = false;
