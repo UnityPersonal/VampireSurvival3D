@@ -850,27 +850,27 @@ PrefabInstance:
       objectReference: {fileID: -473303862, guid: 6a42c82d94fad04428ee090c8154b827, type: 3}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -882,23 +882,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1040,9 +1040,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7009983534924290829, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8424359720640273312, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
       propertyPath: m_Behaviour
@@ -1064,21 +1072,110 @@ PrefabInstance:
       propertyPath: m_PointerMoveAction.m_Name
       value: Pointer Move
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 837dce50-3384-4674-8011-239c422a6532
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: cbd66e2d-6d90-4f11-9997-ad3aea96564b
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 929ee9be-d785-43f2-a64c-47e86556b286
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 2ce8f571-90ce-4083-9321-5f8862efe270
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 7e823723-8bd7-457f-b363-78bced195dc9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Touchscreen>/Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Touchscreen>/position
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Mouse>/position
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Pointer Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Pointer Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerDownAction.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Pointer Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Pointer Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      propertyPath: m_PointerMoveAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Pointer Move
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8897928875330852350, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3646811092254336455, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1010883539}
   m_SourcePrefab: {fileID: 100100000, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
 --- !u!224 &1010883532 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 635029121584879781, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
   m_PrefabInstance: {fileID: 1010883531}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1010883534 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2289747043155931128, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
+--- !u!223 &1010883538 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1052586427250273742, guid: 4688116372f7db949b4d5e639fa3eb2c, type: 3}
   m_PrefabInstance: {fileID: 1010883531}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1010883539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536093536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad293c4770600e44b763a24c0b1912a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystickUI: {fileID: 1010883532}
+  inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  positionActionRef: {fileID: -1945431098021200633, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  pressActionRef: {fileID: -6791679882342796480, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  joystickRoot: {fileID: 1010883532}
+  knob: {fileID: 1490318885}
+  canvas: {fileID: 1010883538}
+  knobRadius: 120
+  controlPath: <Gamepad>/leftStick
 --- !u!1001 &1027214696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2160,10 +2257,6 @@ MonoBehaviour:
   rotateSpeed: 5
   animator: {fileID: 2144712362}
   characterController: {fileID: 1883667051}
-  mobileContorl: {fileID: 536093536}
-  mobileCanvas: {fileID: 1010883534}
-  mobileRing: {fileID: 1010883532}
-  mobileStick: {fileID: 1490318885}
 --- !u!143 &1883667051
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2340,7 +2433,6 @@ GameObject:
   - component: {fileID: 1953064761}
   - component: {fileID: 1953064760}
   - component: {fileID: 1953064759}
-  - component: {fileID: 1953064758}
   - component: {fileID: 1953064757}
   m_Layer: 5
   m_Name: CombatFeedbackUI
@@ -2362,23 +2454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sample: {fileID: 7825208633582385610, guid: 60835b7608e88f7489250211caaa8903, type: 3}
---- !u!114 &1953064758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953064756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 1015
 --- !u!114 &1953064759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2671,7 +2746,6 @@ SceneRoots:
   - {fileID: 1758151592}
   - {fileID: 1500071078}
   - {fileID: 1115956115}
-  - {fileID: 1010883531}
   - {fileID: 1883667047}
   - {fileID: 1925615441}
   - {fileID: 1554352673}
@@ -2680,3 +2754,4 @@ SceneRoots:
   - {fileID: 1027214696}
   - {fileID: 1288986578}
   - {fileID: 1953064761}
+  - {fileID: 1010883531}

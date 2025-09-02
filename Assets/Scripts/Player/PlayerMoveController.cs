@@ -19,13 +19,6 @@ public class PlayerMoveController : MonoBehaviour
     private InputActionMap playerActionMap;
     private InputAction moveAction;
     
-    [Required,SerializeField] GameObject mobileContorl;
-    [Required, SerializeField] private RectTransform mobileCanvas;
-    [Required, SerializeField] private RectTransform mobileRing;
-    [Required,SerializeField] RectTransform mobileStick;
-    private InputAction tabOnAction;
-    private InputAction tabOffAction;
-    private InputAction tabWhereAction;
     private Camera mainCamera;
 
     [ReadOnly,ShowInInspector] private Vector3 rightMoveDirection;
@@ -38,9 +31,7 @@ public class PlayerMoveController : MonoBehaviour
         playerActionMap =  inputActionAsset.FindActionMap("Player");
         
         moveAction = playerActionMap.FindAction("Move");
-        tabOnAction  = playerActionMap.FindAction("TabOn");
-        tabOffAction  = playerActionMap.FindAction("TabOff");
-        tabWhereAction = playerActionMap.FindAction("TabWhere");
+       
         mainCamera =  Camera.main;
         
         rightMoveDirection = mainCamera.transform.right;
@@ -68,26 +59,6 @@ public class PlayerMoveController : MonoBehaviour
     private void Update()
     {
         moveInputVector = moveAction.ReadValue<Vector2>();
-
-        /*if (tabOnAction.WasPerformedThisFrame())
-        {
-            mobileContorl.SetActive(true);
-            
-            Vector3 tabPosition = tabWhereAction.ReadValue<Vector2>();
-          
-            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(mobileCanvas, Input.mousePosition, null, out Vector2 ringPoint))
-            {
-                mobileRing.localPosition = ringPoint;
-            }
-            else
-            {
-            }
-        }
-
-        if (tabOffAction.WasPerformedThisFrame())
-        {
-            mobileContorl.SetActive(false);
-        }*/
     }
     
     private void Rotate()

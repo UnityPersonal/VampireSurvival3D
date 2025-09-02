@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TabOff",
-                    "type": "Button",
-                    "id": "33858adb-1321-4dfc-a4e9-312a8aa04a2b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "TabWhere",
                     "type": "Value",
                     "id": "e250cb43-71ca-4fff-b486-82b6038d84c5",
@@ -177,56 +168,45 @@
                 },
                 {
                     "name": "",
-                    "id": "c902fc96-cdca-4285-843f-2373e537918a",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TabOn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "46f6c378-f514-42e0-8632-271bd59ef9c9",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TabOn",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3018f205-1588-4f79-83e8-cdfd1df230c9",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TabOff",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bd07fd28-aacd-45a3-bce8-dfc43e8fa99e",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TabOff",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0be0cafb-3e57-4f01-b690-7332b893fc34",
+                    "id": "a40b2f6e-3f87-427a-9ca0-7db7fba36e55",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "TabWhere",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e4ff6cb-a7b4-4396-8a7e-302551b1711b",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabWhere",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4bd58a5a-076c-407a-be42-fe1741ec4fa8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ab7ae45-f729-42e2-8395-c6381aef3ff5",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -249,7 +229,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -258,7 +238,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -19,7 +19,7 @@ public class DamageTextFeedbackSpawner : GameObjectPool<DamageTextFeedback>
     private void OnTakeDamage(TakeDamageEventArgs obj)
     {
         var feedback = PopPoolItem();
-        Debug.Log($" Spawn Take Damage : {feedback} {obj.Taker}");
+        //Debug.Log($" Spawn Take Damage : {feedback} {obj.Taker}");
         feedback.Setup(obj.Taker.CombatTransform, obj.DamageTaken.ToString());
     }
 }
