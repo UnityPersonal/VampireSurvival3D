@@ -95,6 +95,8 @@ public class AnimatedMeshEditorWindow : EditorWindow
 
             foreach (var clip in clips)
             {
+                
+                
                 clipIndex++;
                 var msg = $"Processing animation {clip.name} ({clipIndex} / {clips.Length})";
                 Debug.Log(msg);
@@ -105,6 +107,14 @@ public class AnimatedMeshEditorWindow : EditorWindow
 
                 float dt = 1f / AnimationFPS;
                 float tMax = Mathf.Max(clip.length, dt); // 방어적
+                
+                var clipFolder = parentFolder + clip.name;
+                if (!AssetDatabase.IsValidFolder(clipFolder))
+                {
+                    var parent = System.IO.Path.GetDirectoryName(clipFolder).Replace("\\", "/");
+                    var folder = System.IO.Path.GetFileName(clipFolder);
+                    AssetDatabase.CreateFolder(parent, folder);
+                }
 
                 // 애니메이션 샘플링 루프
                 for (float t = 0f; t < tMax; t += dt)
@@ -135,13 +145,6 @@ public class AnimatedMeshEditorWindow : EditorWindow
 
                         if (!dryRun)
                         {
-                            var clipFolder = parentFolder + clip.name;
-                            if (!AssetDatabase.IsValidFolder(clipFolder))
-                            {
-                                var parent = System.IO.Path.GetDirectoryName(clipFolder).Replace("\\", "/");
-                                var folder = System.IO.Path.GetFileName(clipFolder);
-                                AssetDatabase.CreateFolder(parent, folder);
-                            }
                             var assetPath = $"{clipFolder}/{t:F4}.asset";
                             AssetDatabase.CreateAsset(mesh, assetPath);
                         }

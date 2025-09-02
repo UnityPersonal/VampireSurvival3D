@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1052586427250273742}
   - component: {fileID: 8236976856811216849}
   - component: {fileID: 567437113784476708}
-  m_Layer: 5
+  - component: {fileID: 2986915564175381508}
+  m_Layer: 9
   m_Name: PlayerMobileControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +103,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!114 &2986915564175381508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3646811092254336455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad293c4770600e44b763a24c0b1912a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystickUI: {fileID: 635029121584879781}
+  inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  positionActionRef: {fileID: -1945431098021200633, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  pressActionRef: {fileID: -6791679882342796480, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  joystickRoot: {fileID: 635029121584879781}
+  knob: {fileID: 6451820290356489008}
+  canvas: {fileID: 1052586427250273742}
+  knobRadius: 120
+  controlPath: <Gamepad>/leftStick
 --- !u!1 &7009983534924290829
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,13 +135,13 @@ GameObject:
   - component: {fileID: 635029121584879781}
   - component: {fileID: 4343091692433097172}
   - component: {fileID: 4190706028153260669}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: OuterRingLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &635029121584879781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -130,15 +152,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6451820290356489008}
   m_Father: {fileID: 2289747043155931128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -910.5, y: -351.5}
-  m_SizeDelta: {x: 420, y: 420}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4343091692433097172
 CanvasRenderer:
@@ -189,8 +211,7 @@ GameObject:
   - component: {fileID: 6451820290356489008}
   - component: {fileID: 5708451637754871449}
   - component: {fileID: 556757448897287839}
-  - component: {fileID: 8897928875330852350}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: MoveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1051624297, guid: cc123c8a08dbbd5479e917a1df782ada, type: 3}
+  m_Sprite: {fileID: -473303862, guid: 6a42c82d94fad04428ee090c8154b827, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -254,38 +275,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8897928875330852350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424359720640273312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementRange: 50
-  m_DynamicOriginRange: 100
-  m_ControlPath: <Gamepad>/leftStick
-  m_Behaviour: 0
-  m_UseIsolatedInputActions: 0
-  m_PointerDownAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a211d1da-9d32-4658-8cba-c6d100f459ce
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  m_PointerMoveAction:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 39dc3f5a-5d04-4286-9831-5c5cc45bba3a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
