@@ -30,21 +30,41 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
 
     public static uint RegistMesh(AnimatedMesh animatedMesh)
     {
-        if (Instance == null)
+        var sigleton = Instance;
+        if (sigleton == null)
             return 0;
-        
-        var proxy = new AnimatedMeshProxy(animatedMesh);
-        Instance.requestsForRegist.Add(proxy);
-        
-        return proxy.uid;
+
+        return sigleton.RegistMeshImplementation(animatedMesh);
     }
 
-    public static void UnregistMesh(uint uid)
+    private uint RegistMeshImplementation(AnimatedMesh animatedMesh)
     {
-        if (Instance == null)
-            return;
+        if (animatedMeshList.TryGetValue(animatedMesh.AnimatedMeshUID, out var mesh) == false)
+        {
+            var proxy = new AnimatedMeshProxy(animatedMesh);
+            Instance.requestsForRegist.Add(proxy);
+            animatedMesh.AnimatedMeshUID = proxy.uid; // align uid 
+        }
         
-        Instance.requestsForUnregist.Add(uid);
+        return animatedMesh.AnimatedMeshUID;
+    }
+
+    public static void UnregistMesh(AnimatedMesh animatedMesh)
+    {
+        var sigleton = Instance;
+        if (sigleton == null)
+            return;
+
+        sigleton.UnregistMeshImplementation(animatedMesh);  
+    }
+
+    private void UnregistMeshImplementation(AnimatedMesh animatedMesh)
+    {
+        if (animatedMesh.AnimatedMeshUID != 0)
+        {
+            Instance.requestsForUnregist.Add(animatedMesh.AnimatedMeshUID);
+            animatedMesh.AnimatedMeshUID = 0; // reset uid
+        }
     }
 
     
@@ -56,6 +76,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         public float animationfps;
         public int clipCount;
         public int currentClip;
+        public bool isLoop;
     }
 
     public struct JobResult
@@ -63,6 +84,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         public uint uid;
         public float lastTickTime;
         public int currentClip;
+        public bool isCompleted;
     }
     
     [BurstCompile]
@@ -79,13 +101,21 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             uint uid =  lookup.uid;
             int resultClip = lookup.currentClip;
             float lastTickTime = lookup.lastTickTime;
+            bool isCompleted = false;
             
             if (time >= lookup.lastTickTime + (1f / lookup.animationfps))
             {
                 resultClip = lookup.currentClip + 1;
                 if (resultClip >= lookup.clipCount)
                 {
-                    resultClip = 0;
+                    if (lookup.isLoop)
+                    {
+                        resultClip = 0;
+                    }
+                    else
+                    {
+                        isCompleted = true;
+                    }
                 }
                 lastTickTime = time;
             }
@@ -94,7 +124,8 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             {
                 uid = uid,
                 lastTickTime = lastTickTime,
-                currentClip = resultClip
+                currentClip = resultClip,
+                isCompleted = isCompleted,
             };
         }
     }
@@ -114,13 +145,15 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         {
             var proxy = jobList[i];
             var anim = proxy.animatedMesh;
+            
             lookups[i] = new JobLookup
             {
                 uid = proxy.uid,
                 lastTickTime = anim.LastTickTime,
                 animationfps = anim.AnimationSO.AnimationFPS ,
                 clipCount = anim.AnimationMeshes.Count,
-                currentClip = anim.AnimationIndex
+                currentClip = anim.AnimationIndex,
+                isLoop = anim.isLooping
             };
         }
         
@@ -151,11 +184,18 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             var proxy =animatedMeshList[result.uid];
             
             if(proxy.isReleased) continue;
+
+            if (result.isCompleted)
+            {
+                UnregistMeshImplementation(proxy.animatedMesh);
+                continue;
+            }
             
             var anim = proxy.animatedMesh;
             anim.AnimationIndex = result.currentClip;
-            anim.Filter.mesh = anim.AnimationMeshes[result.currentClip];
+            anim.MeshFilter.mesh = anim.AnimationMeshes[result.currentClip];
             anim.LastTickTime = result.lastTickTime;
+            
         }
         
         requestsForUnregist.ForEach(request=> animatedMeshList.Remove(request));

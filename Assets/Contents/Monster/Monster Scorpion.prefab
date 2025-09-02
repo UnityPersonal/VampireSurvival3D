@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSO: {fileID: 11400000, guid: 6bbe91320e8aced439a3578c146b13b1, type: 2}
-  Filter: {fileID: 0}
+  Filter: {fileID: 3764277083177275405}
   Tick: 1
   AnimationIndex: 0
   AnimationName: Walk

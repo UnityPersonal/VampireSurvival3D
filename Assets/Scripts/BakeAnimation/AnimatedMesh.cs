@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class AnimatedMesh : MonoBehaviour
@@ -10,12 +11,10 @@ public class AnimatedMesh : MonoBehaviour
     private int uid = 0;
     [SerializeField]
     public AnimatedMeshScriptableObject AnimationSO;
-    public MeshFilter Filter;
+    [HideInInspector] public MeshFilter MeshFilter;
     private MeshRenderer Renderer;
 
     [Header("Debug")]
-    [SerializeField]
-    public int Tick = 1;
     [SerializeField]
     public int AnimationIndex;
     [SerializeField] public string AnimationName;
@@ -25,25 +24,23 @@ public class AnimatedMesh : MonoBehaviour
     public event AnimationEndEvent OnAnimationEnd;
 
     [ReadOnly] public float LastTickTime;
+    public bool isLooping = false;
     
-    [ReadOnly] public bool IsAnimating = false;
-
     private void Awake()
     {
         uid  = uidgen++;
         gameObject.name = $"AnimatedMesh_{uid.ToString()}";
-        Filter = GetComponent<MeshFilter>();
+        MeshFilter = GetComponent<MeshFilter>();
         Renderer = GetComponent<MeshRenderer>();
     }
 
     private uint animatedMeshUID = 0;
+    public uint AnimatedMeshUID { get => animatedMeshUID; set => animatedMeshUID = value; }
 
     private void OnDisable()
     {
-        if(animatedMeshUID != 0)
-            AnimatedMeshScheduleJob.UnregistMesh(animatedMeshUID);
+        AnimatedMeshScheduleJob.UnregistMesh(this);
     }
-
 
     // ReSharper disable Unity.PerformanceAnalysis
     public void Play(string AnimationName)
@@ -51,40 +48,20 @@ public class AnimatedMesh : MonoBehaviour
         //if (AnimationName != this.AnimationName)
         {
             this.AnimationName = AnimationName;
-            Tick = 1;
+            LastTickTime = 0;
             AnimationIndex = 0;
             AnimatedMeshScriptableObject.Animation animation = AnimationSO.Animations.Find((item) => item.Name.Equals(AnimationName));
             AnimationMeshes = animation.Meshes;
+            isLooping = animation.loop;
             if (string.IsNullOrEmpty(animation.Name))
             {
                 Debug.LogError($"Animated model {name} does not have an animation baked for {AnimationName}!");
                 return;
             }
 
-            if (animatedMeshUID == 0)
-            {
-                animatedMeshUID = AnimatedMeshScheduleJob.RegistMesh(this);
-            }
+            if(animatedMeshUID == 0)
+                AnimatedMeshScheduleJob.RegistMesh(this);
         }
     }
 
-    /*private void Update()
-    {
-        if (AnimationMeshes != null)
-        {
-            if (Time.time >= LastTickTime + (1f / AnimationSO.AnimationFPS))
-            {
-                Filter.mesh = AnimationMeshes[AnimationIndex];
-
-                AnimationIndex++;
-                if (AnimationIndex >= AnimationMeshes.Count)
-                {
-                    OnAnimationEnd?.Invoke(AnimationName);
-                    AnimationIndex = 0;
-                }
-                LastTickTime = Time.time;
-            }
-            Tick++;
-        }
-    }*/
 }

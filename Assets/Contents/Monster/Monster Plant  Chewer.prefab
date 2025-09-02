@@ -52,7 +52,6 @@ MonoBehaviour:
   animMesh: {fileID: 7400306136430959449}
   monsterCollider: {fileID: 447223447829883925}
   monsterMeshRenderer: {fileID: 7551295625050562088}
-  behaviorGraphAgent: {fileID: 9007194976890337549}
   frameInterval: 3
   hp: 2
 --- !u!195 &1035325630430678756
@@ -178,10 +177,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3814930258132971343, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 2b5e6dd35d1a0bf41957760b644f1ee0, type: 2}
     - target: {fileID: 4499381945866930854, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
       propertyPath: m_Name
       value: MonsterInstancing
       objectReference: {fileID: 0}
+    - target: {fileID: 7028107054549689823, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
+      propertyPath: AnimationSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ab4be3dd284df984dabb1ee8ebf4ddcb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

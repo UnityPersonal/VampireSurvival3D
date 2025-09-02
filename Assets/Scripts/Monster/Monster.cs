@@ -7,7 +7,6 @@ using UnityEngine.AI;
 using UnityEngine.Profiling;
 using Random = UnityEngine.Random;
 
-//[RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour , ICombatable
 {
     static int monsterIdGenerator = 0;
@@ -21,7 +20,6 @@ public class Monster : MonoBehaviour , ICombatable
     [SerializeField, Required] Collider monsterCollider;
     [SerializeField, Required] Renderer monsterMeshRenderer;
     
-    [SerializeField] BehaviorGraphAgent behaviorGraphAgent;
     private MaterialPropertyBlock mpb;
     public NavMeshAgent Agent => agent;
     
@@ -45,11 +43,9 @@ public class Monster : MonoBehaviour , ICombatable
         playerTransform = Player.Instance.transform;
 
         agent.avoidancePriority = Random.Range(50, 1000);
-        animMesh.Play("Walk");
+        animMesh.Play("Move");
         
         mpb = new MaterialPropertyBlock();
-
-        behaviorGraphAgent.BlackboardReference.SetVariableValue("Player", Player.Instance.gameObject);
     }
 
     private void OnEnable()
@@ -64,6 +60,8 @@ public class Monster : MonoBehaviour , ICombatable
 
     void Update()
     {
+        if (isDead) return;
+        
         // 에이전트별로 프레임 분산 (예: 5프레임마다 1회 경로 갱신)
         if ((Time.frameCount + mosternUID) % frameInterval == 0) {
             if ((playerTransform.position - lastRequestedPos).sqrMagnitude > 1.0f) 
@@ -88,12 +86,19 @@ public class Monster : MonoBehaviour , ICombatable
     public Collider CombatCollider => monsterCollider;
     
     Coroutine coroutine;
+
+    private bool isDead = false;
     public void TakeDamage(DealEventArgs args)
     {
+        if (isDead) return;
+        
         hp -= args.DealDamage;
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            isDead = true;
+            monsterCollider.enabled = false;
+            agent.enabled = false;
+            animMesh.Play("Die");
         }
         else
         {
@@ -118,4 +123,5 @@ public class Monster : MonoBehaviour , ICombatable
         mpb.SetFloat(FlickerID, 0);
         monsterMeshRenderer.SetPropertyBlock(mpb);
     }
+    
 }
