@@ -52,6 +52,7 @@ MonoBehaviour:
   animMesh: {fileID: 7400306136430959449}
   monsterCollider: {fileID: 447223447829883925}
   monsterMeshRenderer: {fileID: 7551295625050562088}
+  attackRadius: 2
   frameInterval: 3
   hp: 2
 --- !u!195 &1035325630430678756

@@ -188,6 +188,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             if (result.isCompleted)
             {
                 UnregistMeshImplementation(proxy.animatedMesh);
+                proxy.animatedMesh.OnAnimationEnd?.Invoke(proxy.animatedMesh.AnimationName);
                 continue;
             }
             

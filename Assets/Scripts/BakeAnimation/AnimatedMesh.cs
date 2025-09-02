@@ -24,6 +24,9 @@ public class AnimatedMesh : MonoBehaviour
     [ReadOnly] public float LastTickTime;
     public bool isLooping = false;
     
+    public delegate void AnimationEndEvent(string Name);
+    public AnimationEndEvent OnAnimationEnd;
+    
     private void Awake()
     {
         uid  = uidgen++;

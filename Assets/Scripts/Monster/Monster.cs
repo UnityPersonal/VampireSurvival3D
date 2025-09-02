@@ -5,6 +5,7 @@ using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Profiling;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Monster : MonoBehaviour , ICombatable
@@ -19,6 +20,8 @@ public class Monster : MonoBehaviour , ICombatable
     [SerializeField, Required] AnimatedMesh animMesh;
     [SerializeField, Required] Collider monsterCollider;
     [SerializeField, Required] Renderer monsterMeshRenderer;
+
+    [SerializeField, Min(0.5f)] private float attackRadius;
     
     private MaterialPropertyBlock mpb;
     public NavMeshAgent Agent => agent;
@@ -33,6 +36,8 @@ public class Monster : MonoBehaviour , ICombatable
 
     [SerializeField] private float hp;
     
+    private bool isAttacking = false;
+    
     private void Start()
     {
         mosternUID = monsterIdGenerator;
@@ -43,9 +48,20 @@ public class Monster : MonoBehaviour , ICombatable
         playerTransform = Player.Instance.transform;
 
         agent.avoidancePriority = Random.Range(50, 1000);
+        animMesh.OnAnimationEnd += OnAnimationEnd;
         animMesh.Play("Move");
         
         mpb = new MaterialPropertyBlock();
+    }
+
+    private void OnAnimationEnd(string animationName)
+    {
+        if (animationName.Equals("Attack"))
+        {
+            isAttacking = false;
+            agent.isStopped = false;
+            animMesh.Play("Move");
+        }
     }
 
     private void OnEnable()
@@ -63,12 +79,33 @@ public class Monster : MonoBehaviour , ICombatable
         if (isDead) return;
         
         // 에이전트별로 프레임 분산 (예: 5프레임마다 1회 경로 갱신)
-        if ((Time.frameCount + mosternUID) % frameInterval == 0) {
+        /*if ((Time.frameCount + mosternUID) % frameInterval == 0) {
             if ((playerTransform.position - lastRequestedPos).sqrMagnitude > 1.0f) 
             {
                 UpdateDestination();
             }
+        }*/
+
+        if (isAttacking == false)
+        {
+            var myPosition = transform.position;
+            var playerPoistion =playerTransform.position;
+            var toPlayer = playerPoistion - myPosition;
+            if (attackRadius > toPlayer.magnitude)
+            {
+                BeginAttack();
+            }
+            else
+            {
+                UpdateDestination();
+            }
         }
+    }
+
+    void BeginAttack()
+    {
+        animMesh.Play("Attack");
+        agent.isStopped = true;
     }
 
     void UpdateDestination()

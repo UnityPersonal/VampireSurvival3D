@@ -52,7 +52,7 @@ MonoBehaviour:
   animMesh: {fileID: 7276385745741448363}
   monsterCollider: {fileID: 2144797044459616517}
   monsterMeshRenderer: {fileID: 5117161599777188674}
-  behaviorGraphAgent: {fileID: 627904711843795719}
+  attackRadius: 3
   frameInterval: 5
   hp: 2
 --- !u!195 &3414866103353051580
@@ -183,13 +183,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationSO: {fileID: 11400000, guid: eebe6f3800a210443b5213dd9aa16f93, type: 2}
-  Filter: {fileID: 4878498412920181172}
-  Tick: 1
+  MeshFilter: {fileID: 0}
   AnimationIndex: 0
   AnimationName: Walk
   AnimationMeshes: []
   LastTickTime: 0
-  IsAnimating: 0
+  isLooping: 0
 --- !u!23 &5117161599777188674
 MeshRenderer:
   m_ObjectHideFlags: 0
