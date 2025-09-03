@@ -79,11 +79,6 @@ public class Monster : MonoBehaviour , ICombatable
 
     private void OnAnimationEnd(string animationName)
     {
-        if (animationName.Equals("Attack"))
-        {
-            Swap(IMonsterState.StateType.Move);
-        }
-
         switch (animationName)
         {
             case "Attack":
@@ -93,10 +88,8 @@ public class Monster : MonoBehaviour , ICombatable
             }
             case "Die":
             {
-                var diePosition = transform.position;
                 transform.DOLocalMoveY(-3, 1f).OnComplete(() =>
                 {
-                    GameEventManager.Publish(new DropItemEventArgs(1,diePosition));
                     Destroy(gameObject);
                 }).SetAutoKill(true);
                 return;

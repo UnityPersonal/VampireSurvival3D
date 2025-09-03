@@ -21,22 +21,27 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
     {
         toward = 0;
         isTriggerd = false;
-    }
-
-    public void Drop()
-    {
-        Dispose();
+        transform.localScale = Vector3.one;
+        
     }
 
     public void OnTriggerDrop()
     {
         isTriggerd = true;
-        DOTween.To(
-            ()=> toward,
-            x=> itemTransform.position = Vector3.Lerp(itemTransform.position,destination.position, x) ,
+        
+        var sequence = DOTween.Sequence();
+        var tween = DOTween.To(
+            () => toward,
+            x => itemTransform.position = Vector3.Lerp(itemTransform.position, destination.position, x),
             1f,
             1
-            ).OnComplete(() => {Drop();});
+        );
+        
+        sequence.Join(tween);
+        var scaleTween = transform.DOScale(Vector3.zero, 1);
+        
+        sequence.Join(scaleTween);
+        sequence.OnComplete(Dispose).SetAutoKill();
     }
 
     private void Update()

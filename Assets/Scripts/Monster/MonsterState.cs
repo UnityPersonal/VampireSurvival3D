@@ -99,6 +99,8 @@ public class MonsterDieState : IMonsterState
         Owner.MonsterCollider.enabled = false;
         Owner.Agent.enabled = false;
         Owner.AnimMesh.Play("Die");
+        
+        GameEventManager.Publish(new DropItemEventArgs(1,Owner.transform.position));
     }
 
     public void Exit()
