@@ -20,6 +20,7 @@ public class AnimatedMesh : MonoBehaviour
     [SerializeField] public string AnimationName;
     [ReadOnly] public List<Mesh> AnimationMeshes;
 
+    AnimatedMeshScriptableObject.Animation currentAnimation;
 
     [ReadOnly] public float LastTickTime;
     public bool isLooping = false;
@@ -40,29 +41,53 @@ public class AnimatedMesh : MonoBehaviour
 
     private void OnDisable()
     {
-        AnimatedMeshScheduleJob.UnregistMesh(this);
+       //AnimatedMeshScheduleJob.UnregistMesh(this);
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
+    private bool isPlaying = false;
     public void Play(string AnimationName)
     {
-        //if (AnimationName != this.AnimationName)
-        {
-            this.AnimationName = AnimationName;
-            LastTickTime = 0;
-            AnimationIndex = 0;
-            AnimatedMeshScriptableObject.Animation animation = AnimationSO.Animations.Find((item) => item.Name.Equals(AnimationName));
-            AnimationMeshes = animation.Meshes;
-            isLooping = animation.loop;
-            if (string.IsNullOrEmpty(animation.Name))
-            {
-                Debug.LogError($"Animated model {name} does not have an animation baked for {AnimationName}!");
-                return;
-            }
+        this.AnimationName = AnimationName;
+        LastTickTime = Time.time;
+        AnimationIndex = 0;
+        currentAnimation = AnimationSO.Animations.Find((item) => item.Name.Equals(AnimationName));
 
-            if(animatedMeshUID == 0)
-                AnimatedMeshScheduleJob.RegistMesh(this);
+        if (string.IsNullOrEmpty(currentAnimation.Name))
+        {
+            Debug.LogError($"Animated model {name} does not have an animation baked for {AnimationName}!");
+            isPlaying = false;
+            return;
         }
+            
+        AnimationMeshes = currentAnimation.Meshes;
+        isLooping = currentAnimation.loop;
+        
+        isPlaying  = true;
+    }
+
+    private void Update()
+    {
+        if (!isPlaying) return;
+        
+        if (Time.time >= LastTickTime + (1f / AnimationSO.AnimationFPS))
+        {
+            AnimationIndex++;
+            if (AnimationIndex >= AnimationMeshes.Count)
+            {
+                if (isLooping)
+                {
+                    AnimationIndex = 0;
+                }
+                else
+                {
+                    AnimationIndex = AnimationMeshes.Count - 1;
+                    OnAnimationEnd?.Invoke(AnimationName);
+                    isPlaying = false;
+                }
+            }
+            LastTickTime = Time.time;
+        }
+        MeshFilter.mesh = AnimationMeshes[AnimationIndex];
     }
 
 }

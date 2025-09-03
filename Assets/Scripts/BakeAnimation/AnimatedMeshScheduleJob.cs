@@ -19,6 +19,7 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
         private static uint uidGenerator = 1;
         public uint uid;
         public bool isReleased;
+        public bool isChanged;
         public AnimatedMesh animatedMesh;
         public AnimatedMeshProxy(AnimatedMesh animatedMesh)
         {
@@ -39,10 +40,14 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
 
     private uint RegistMeshImplementation(AnimatedMesh animatedMesh)
     {
-        if (animatedMeshList.TryGetValue(animatedMesh.AnimatedMeshUID, out var mesh) == false)
+        if (animatedMesh.AnimatedMeshUID != 0)
+        {
+            return animatedMesh.AnimatedMeshUID;
+        }
+        else
         {
             var proxy = new AnimatedMeshProxy(animatedMesh);
-            Instance.requestsForRegist.Add(proxy);
+            requestsForRegist.Add(proxy);
             animatedMesh.AnimatedMeshUID = proxy.uid; // align uid 
         }
         
@@ -185,12 +190,19 @@ public class AnimatedMeshScheduleJob : SingletonOnlyScene<AnimatedMeshScheduleJo
             
             if(proxy.isReleased) continue;
 
+            if (proxy.isChanged)
+            {
+                proxy.isChanged = false;
+                continue;
+            }
+            
             if (result.isCompleted)
             {
                 UnregistMeshImplementation(proxy.animatedMesh);
                 proxy.animatedMesh.OnAnimationEnd?.Invoke(proxy.animatedMesh.AnimationName);
                 continue;
             }
+            
             
             var anim = proxy.animatedMesh;
             anim.AnimationIndex = result.currentClip;

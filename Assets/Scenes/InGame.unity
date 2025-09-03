@@ -294,11 +294,10 @@ MonoBehaviour:
   - {fileID: 8708006946151826235, guid: 738d561f7e7b72e4fa0e322a8b6f498c, type: 3}
   - {fileID: 1396311032101171746, guid: b6f4def4c1003b6479bdcac3fd529c3a, type: 3}
   - {fileID: 3634194532164870416, guid: 561f28301f9d52f43b360492a51d127d, type: 3}
-  maxSpawnCount: 1000
+  maxSpawnCount: 100
   spawnPerCount: 100
   spawnRadius: 10
   spawnInterval: 1
-  navMesh: {fileID: 0}
 --- !u!1 &865951019
 GameObject:
   m_ObjectHideFlags: 0

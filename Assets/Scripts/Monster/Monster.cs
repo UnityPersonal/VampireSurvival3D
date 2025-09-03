@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Unity.Behavior;
 using UnityEngine;
@@ -15,28 +16,44 @@ public class Monster : MonoBehaviour , ICombatable
     static readonly int FlickerID = Shader.PropertyToID("_FlickerFactor"); 
     
     private int mosternUID = 0;
+    public int MonsterUID => mosternUID;
     private Vector3 lastRequestedPos;
     [SerializeField, Required] NavMeshAgent agent;
+    public NavMeshAgent Agent => agent;
     [SerializeField, Required] AnimatedMesh animMesh;
+    public AnimatedMesh AnimMesh => animMesh;
     [SerializeField, Required] Collider monsterCollider;
+    public Collider MonsterCollider => monsterCollider;
     [SerializeField, Required] Renderer monsterMeshRenderer;
+    public Renderer MonsterMeshRenderer => monsterMeshRenderer;
 
     [SerializeField, Min(0.5f)] private float attackRadius;
+    public float AttackRadius => attackRadius;
     
     private MaterialPropertyBlock mpb;
-    public NavMeshAgent Agent => agent;
     
     private static Camera mainCamera;
     
     private Transform playerTransform;
     
-   [SerializeField] int frameInterval = 5;
-
-    private const float radiusDestination = 0.2f;
+    private const float RadiusDestination = 0.2f;
 
     [SerializeField] private float hp;
     
-    private bool isAttacking = false;
+    public bool IsAttacking { get; set; }= false;
+    
+    private readonly Dictionary<IMonsterState.StateType, IMonsterState> states =  new Dictionary<IMonsterState.StateType, IMonsterState>();
+    private IMonsterState currentState = null;
+
+    public void Swap(IMonsterState.StateType type)
+    {
+        if (currentState != null)
+        {
+            currentState.Exit();
+        }
+        currentState = states[type];
+        currentState.Enter();
+    }
     
     private void Start()
     {
@@ -49,18 +66,21 @@ public class Monster : MonoBehaviour , ICombatable
 
         agent.avoidancePriority = Random.Range(50, 1000);
         animMesh.OnAnimationEnd += OnAnimationEnd;
-        animMesh.Play("Move");
         
         mpb = new MaterialPropertyBlock();
+
+        states[IMonsterState.StateType.Move] = new MonsterMoveState(this);
+        states[IMonsterState.StateType.Attack] = new MonsterAttackState(this);
+        states[IMonsterState.StateType.Die] = new MonsterDieState(this);
+        
+        Swap(IMonsterState.StateType.Move);
     }
 
     private void OnAnimationEnd(string animationName)
     {
         if (animationName.Equals("Attack"))
         {
-            isAttacking = false;
-            agent.isStopped = false;
-            animMesh.Play("Move");
+            Swap(IMonsterState.StateType.Move);
         }
     }
 
@@ -76,42 +96,18 @@ public class Monster : MonoBehaviour , ICombatable
 
     void Update()
     {
-        if (isDead) return;
-        
-        // 에이전트별로 프레임 분산 (예: 5프레임마다 1회 경로 갱신)
-        /*if ((Time.frameCount + mosternUID) % frameInterval == 0) {
-            if ((playerTransform.position - lastRequestedPos).sqrMagnitude > 1.0f) 
-            {
-                UpdateDestination();
-            }
-        }*/
+        if (IsDead) return;
 
-        if (isAttacking == false)
+        if (currentState != null)
         {
-            var myPosition = transform.position;
-            var playerPoistion =playerTransform.position;
-            var toPlayer = playerPoistion - myPosition;
-            if (attackRadius > toPlayer.magnitude)
-            {
-                BeginAttack();
-            }
-            else
-            {
-                UpdateDestination();
-            }
+            currentState.Execute();
         }
     }
 
-    void BeginAttack()
-    {
-        animMesh.Play("Attack");
-        agent.isStopped = true;
-    }
-
-    void UpdateDestination()
+    public void UpdateDestination()
     {
         var destination = playerTransform.position;
-        var offset = radiusDestination * Random.insideUnitCircle;
+        var offset = RadiusDestination * Random.insideUnitCircle;
         destination.x += offset.x;
         destination.z += offset.y;
         
@@ -124,18 +120,15 @@ public class Monster : MonoBehaviour , ICombatable
     
     Coroutine coroutine;
 
-    private bool isDead = false;
+    public bool IsDead { get; set; } = false;
     public void TakeDamage(DealEventArgs args)
     {
-        if (isDead) return;
+        if (IsDead) return;
         
         hp -= args.DealDamage;
         if (hp <= 0)
         {
-            isDead = true;
-            monsterCollider.enabled = false;
-            agent.enabled = false;
-            animMesh.Play("Die");
+            Swap(IMonsterState.StateType.Die);
         }
         else
         {
