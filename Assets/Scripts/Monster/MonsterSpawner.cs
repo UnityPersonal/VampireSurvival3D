@@ -22,17 +22,17 @@ public class MonsterSpawner : MonoBehaviour
 
     void Update()
     {
-        if (currentSpawnCount >= maxSpawnCount)
+        /*if (currentSpawnCount >= maxSpawnCount)
         {
             return;
-        }
+        }*/
         
         if (lastSpawnTime + spawnInterval <= Time.time)
         {
             lastSpawnTime = Time.time;
             for (int i = 0; i < spawnPerCount; i++)
             {
-                var spawnPosition = Player.Instance.transform.position;
+                var spawnPosition = transform.position;
                 var circle = Random.insideUnitCircle * spawnRadius;
                 spawnPosition.x += circle.x;
                 spawnPosition.z += circle.y;
