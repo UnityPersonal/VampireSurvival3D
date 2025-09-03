@@ -9,6 +9,16 @@ public class SpawnEventArgs : CombatEventArgs
 {
 }
 
+public class DeathEventArgs : CombatEventArgs
+{
+    public Vector3 Position { get; set; }
+
+    public DeathEventArgs(Vector3 position)
+    {
+        Position = position;
+    }
+}
+
 public class DealEventArgs : CombatEventArgs
 {
     public float DealDamage { get; set; }
@@ -27,5 +37,17 @@ public class TakeDamageEventArgs : CombatEventArgs
     {
         Taker = taker;
         DamageTaken = damageTaken;
+    }
+}
+
+public class DropItemEventArgs : CombatEventArgs
+{
+    public int Point {get; set;}
+    public Vector3 Position {get; set;}
+
+    public DropItemEventArgs(int point, Vector3 position)
+    {
+        Point = point;
+        Position = position;
     }
 }

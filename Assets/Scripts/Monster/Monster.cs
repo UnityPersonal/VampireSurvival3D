@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using Unity.Behavior;
 using UnityEngine;
@@ -81,6 +82,25 @@ public class Monster : MonoBehaviour , ICombatable
         if (animationName.Equals("Attack"))
         {
             Swap(IMonsterState.StateType.Move);
+        }
+
+        switch (animationName)
+        {
+            case "Attack":
+            {
+                Swap(IMonsterState.StateType.Move);
+                return;
+            }
+            case "Die":
+            {
+                var diePosition = transform.position;
+                transform.DOLocalMoveY(-3, 1f).OnComplete(() =>
+                {
+                    GameEventManager.Publish(new DropItemEventArgs(1,diePosition));
+                    Destroy(gameObject);
+                }).SetAutoKill(true);
+                return;
+            }
         }
     }
 
