@@ -1,5 +1,101 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &204168887399416764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204168887399715510}
+  - component: {fileID: 1943072226872509284}
+  m_Layer: 8
+  m_Name: GateWall (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &204168887399715510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204168887399416764}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.70242167, z: -0, w: 0.71176106}
+  m_LocalPosition: {x: 1.47, y: -0, z: -6.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6652945735084085553}
+  m_LocalEulerAnglesHint: {x: 0, y: -89.243, z: 0}
+--- !u!208 &1943072226872509284
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204168887399416764}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.39, y: 2.545, z: 1.72}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.545, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!1 &1323924523041856993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323924523041557739}
+  - component: {fileID: 8581755702133162852}
+  m_Layer: 8
+  m_Name: GateWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1323924523041557739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323924523041856993}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.70242167, z: -0, w: 0.71176106}
+  m_LocalPosition: {x: 0.57, y: -0, z: 5.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6652945735084085553}
+  m_LocalEulerAnglesHint: {x: 0, y: -89.243, z: 0}
+--- !u!208 &8581755702133162852
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323924523041856993}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.39, y: 2.545, z: 2.015}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.545, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5219592534702670310
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +127,8 @@ Transform:
   m_Children:
   - {fileID: 220266385983537307}
   - {fileID: 7509751082507017965}
+  - {fileID: 1323924523041557739}
+  - {fileID: 204168887399715510}
   - {fileID: 4898209909667674798}
   - {fileID: 3381373277472361408}
   - {fileID: 5820443857992657975}

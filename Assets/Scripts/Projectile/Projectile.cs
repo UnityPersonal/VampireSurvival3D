@@ -17,9 +17,9 @@ public class Projectile : MonoBehaviour , IDisposable
     {
         if (isDisposed == false)
         {
+            isDisposed  = true;
             owner.Dispose(this);
         }
-            
     }
     
     public void Create(WeaponController owner)
@@ -49,6 +49,9 @@ public class Projectile : MonoBehaviour , IDisposable
     
     private void OnTriggerEnter(Collider other)
     {
+        if (isDisposed)
+            return;
+        
         if( CombatManager.TryLookup(other , out ICombatable combatable))
         {
             combatable.TakeDamage(new DealEventArgs(attackPower));
