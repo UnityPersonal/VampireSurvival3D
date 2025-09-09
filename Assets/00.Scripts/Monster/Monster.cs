@@ -21,8 +21,8 @@ public class Monster : MonoBehaviour , ICombatable
     private Vector3 lastRequestedPos;
     [SerializeField, Required] NavMeshAgent agent;
     public NavMeshAgent Agent => agent;
-    [SerializeField, Required] AnimatedMesh animMesh;
-    public AnimatedMesh AnimMesh => animMesh;
+    [SerializeField, Required] VATAnimator animator;
+    public VATAnimator Animator => animator;
     [SerializeField, Required] Collider monsterCollider;
     public Collider MonsterCollider => monsterCollider;
     [SerializeField, Required] Renderer monsterMeshRenderer;
@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour , ICombatable
         playerTransform = Player.Instance.transform;
 
         agent.avoidancePriority = Random.Range(50, 1000);
-        animMesh.OnAnimationEnd += OnAnimationEnd;
+        animator.OnAnimationEnd += OnAnimationEnd;
         
         mpb = new MaterialPropertyBlock();
 
@@ -77,16 +77,16 @@ public class Monster : MonoBehaviour , ICombatable
         Swap(IMonsterState.StateType.Move);
     }
 
-    private void OnAnimationEnd(string animationName)
+    private void OnAnimationEnd(int clipIndex)
     {
-        switch (animationName)
+        switch (clipIndex)
         {
-            case "Attack":
+            case VATAnimationSO.ATTACK_CLIP_INDEX:
             {
                 Swap(IMonsterState.StateType.Move);
                 return;
             }
-            case "Die":
+            case VATAnimationSO.DEATH_CLIP_INDEX:
             {
                 transform.DOLocalMoveY(-3, 1f).OnComplete(() =>
                 {

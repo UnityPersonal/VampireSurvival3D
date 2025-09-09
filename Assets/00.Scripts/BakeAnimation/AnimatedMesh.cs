@@ -26,7 +26,7 @@ public class AnimatedMesh : MonoBehaviour
     public bool isLooping = false;
     
     public delegate void AnimationEndEvent(string Name);
-    public AnimationEndEvent OnAnimationEnd;
+    public event AnimationEndEvent OnAnimationEnd;
     
     private void Awake()
     {

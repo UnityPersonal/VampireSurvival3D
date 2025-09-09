@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1035325630430678756}
-  animMesh: {fileID: 0}
+  animator: {fileID: 7904865445353171260}
   monsterCollider: {fileID: 447223447829883925}
   monsterMeshRenderer: {fileID: 7551295625050562088}
   attackRadius: 2

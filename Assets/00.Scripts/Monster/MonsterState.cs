@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Behavior;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class MonsterMoveState : IMonsterState
 
     public void Enter()
     {
-        Owner.AnimMesh.Play("Move");
+        Owner.Animator.Play(VATAnimationSO.MOVE_CLIP_INDEX);
         Owner.Agent.isStopped = false;
     }
 
@@ -69,7 +70,7 @@ public class MonsterAttackState : IMonsterState
     {
         Owner.IsAttacking = true;
         Owner.Agent.isStopped = false;
-        Owner.AnimMesh.Play("Attack");
+        Owner.Animator.Play(VATAnimationSO.ATTACK_CLIP_INDEX);
     }
 
     public void Exit()
@@ -98,7 +99,7 @@ public class MonsterDieState : IMonsterState
         Owner.IsDead = true;
         Owner.MonsterCollider.enabled = false;
         Owner.Agent.enabled = false;
-        Owner.AnimMesh.Play("Die");
+        Owner.Animator.Play(VATAnimationSO.DEATH_CLIP_INDEX);
         
         GameEventManager.Publish(new DropItemEventArgs(1,Owner.transform.position));
     }
