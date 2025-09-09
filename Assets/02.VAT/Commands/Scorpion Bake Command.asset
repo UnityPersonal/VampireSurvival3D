@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2121c0883358b3408f0c74ef9ee461e, type: 3}
+  m_Name: Scorpion Bake Command
+  m_EditorClassIdentifier: 
+  idle: {fileID: 1827226128182048838, guid: e36f2d627f3b7da4ea6675ba698ab448, type: 3}
+  move: {fileID: 1827226128182048838, guid: 78a6ce93500db1f4d916e3131accb7de, type: 3}
+  attack: {fileID: 1827226128182048838, guid: fa04696b0828c18478d2b8ff0a442f8b, type: 3}
+  death: {fileID: 1827226128182048838, guid: 26d1bfffa7f7f424c9b1d253d0907296, type: 3}
+  animatedGameObject: {fileID: 3992842270661408858, guid: a35d5e1d1ab8f2940a3f069c96a71912, type: 3}

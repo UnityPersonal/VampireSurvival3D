@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5bd1e059c89dc84aac824cc8f860ed2, type: 3}
+  m_Name: Earthworm
+  m_EditorClassIdentifier: 
+  clipTexture: {fileID: 2800000, guid: aa32f9c0f4742a84090f113b9ff835ba, type: 3}
+  bound: {x: -1.904767, y: 1.7346654}
+  clips:
+  - isLooping: 0
+    clipBeginIndexInTexture: 0
+    clipLength: 361
+    duration: 6.0000005
+    originalClip: {fileID: 1827226128182048838, guid: 1b620e87f200bab41b1b90f4883fa4c6, type: 3}
+  - isLooping: 0
+    clipBeginIndexInTexture: 361
+    clipLength: 30
+    duration: 0.5
+    originalClip: {fileID: 1827226128182048838, guid: 4172bc0807af8f64882e4b239865fcaa, type: 3}
+  - isLooping: 0
+    clipBeginIndexInTexture: 391
+    clipLength: 51
+    duration: 0.8333334
+    originalClip: {fileID: 1827226128182048838, guid: c72832676042b064e8099c0e52021550, type: 3}
+  - isLooping: 0
+    clipBeginIndexInTexture: 442
+    clipLength: 120
+    duration: 2
+    originalClip: {fileID: 1827226128182048838, guid: da49d1e915581414fa0b3d1617ee00db, type: 3}
