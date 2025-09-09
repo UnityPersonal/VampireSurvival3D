@@ -15,12 +15,12 @@ MonoBehaviour:
   clipTexture: {fileID: 2800000, guid: aa32f9c0f4742a84090f113b9ff835ba, type: 3}
   bound: {x: -1.904767, y: 1.7346654}
   clips:
-  - isLooping: 0
+  - isLooping: 1
     clipBeginIndexInTexture: 0
     clipLength: 361
     duration: 6.0000005
     originalClip: {fileID: 1827226128182048838, guid: 1b620e87f200bab41b1b90f4883fa4c6, type: 3}
-  - isLooping: 0
+  - isLooping: 1
     clipBeginIndexInTexture: 361
     clipLength: 30
     duration: 0.5
