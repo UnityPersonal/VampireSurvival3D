@@ -49,11 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1035325630430678756}
-  animMesh: {fileID: 7400306136430959449}
+  animMesh: {fileID: 0}
   monsterCollider: {fileID: 447223447829883925}
   monsterMeshRenderer: {fileID: 7551295625050562088}
   attackRadius: 2
-  frameInterval: 3
   hp: 2
 --- !u!195 &1035325630430678756
 NavMeshAgent:
@@ -190,13 +189,18 @@ PrefabInstance:
       propertyPath: AnimationSO
       value: 
       objectReference: {fileID: 11400000, guid: ab4be3dd284df984dabb1ee8ebf4ddcb, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 8066059379626746030, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 68e3da7c2636ab943b103e668cc27e23, type: 2}
+    m_RemovedComponents:
+    - {fileID: 7028107054549689823, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5180722908379081441, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6130341744075031210}
+      addedObject: {fileID: 7904865445353171260}
   m_SourcePrefab: {fileID: 100100000, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
 --- !u!4 &1779362921754041700 stripped
 Transform:
@@ -208,7 +212,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5180722908379081441, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
   m_PrefabInstance: {fileID: 521275275171184262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6130341744075031210
+--- !u!114 &7904865445353171260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,31 +221,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4674262594824721511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d63b63d48e24ca94590613a5c833879d, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f8685fa974d5c4298dc10424241710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressiveMesh: {fileID: 11400000, guid: 38e8455e3b566444399b2bc9e0dc5af8, type: 2}
-  fpsHint: {fileID: 0}
-  lodHint: {fileID: 0}
-  triangleHint: {fileID: 0}
-  optimize_on_the_fly: 1
-  mesh_lod_range: 0000000007000000
-  never_cull: 1
-  lod_strategy: 1
-  cull_ratio: 0.1
-  disappear_distance: 250
-  updateInterval: 0.25
---- !u!114 &7400306136430959449 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7028107054549689823, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
-  m_PrefabInstance: {fileID: 521275275171184262}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4674262594824721511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555c041fa37ac494087c2ead0fe5b43e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  animation: {fileID: 11400000, guid: b3dfbdb45a0891d4b8fc58a49a15299b, type: 2}
+  duration: 1
 --- !u!23 &7551295625050562088 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8066059379626746030, guid: b25dd897d2bcf0f4a96b745aec0a69d9, type: 3}
