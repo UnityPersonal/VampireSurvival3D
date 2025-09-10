@@ -7,7 +7,11 @@ using UnityEngine.Pool;
 public class WeaponController : MonoBehaviour
 {
     private int projectileID = 0;
+    
     private ObjectPool<Projectile> projectilePool;
+
+    [SerializeField, Required, ChildGameObjectsOnly] private Transform turret;
+    [SerializeField, Required, ChildGameObjectsOnly] Transform firePoint;
 
     private static void DestroyProjectile(Projectile obj)
     {
@@ -55,11 +59,24 @@ public class WeaponController : MonoBehaviour
         projectilePool.Release(obj);
     }
 
+    private Collider[] currentFrameDetected;
+
+    void RotateTurret()
+    {
+        
+    }
+
     void Update()
     {
+        currentFrameDetected = Physics.OverlapSphere( playerTransform.position, aimRadius, aimLayer.value);
+        if (currentFrameDetected.Length == 0)
+        {
+            return;
+        }
+        
         if (fireTime + fireRate < Time.time)
         {
-            Transform playerTransform  = transform;
+            Transform playerTransform  = firePoint;
             Vector3 aimDirection = playerTransform.forward;
             
             // aim search
@@ -84,8 +101,14 @@ public class WeaponController : MonoBehaviour
             var instance = projectilePool.Get();
             instance.transform.position = playerTransform.position;
             instance.Setup(aimDirection);
+
+            var turrentDirection = aimDirection;
+            turrentDirection.y = 0;
+            turrentDirection.Normalize();
             
             fireTime = Time.time;
+            
+            turrentDirection.Normalize();
         }
         
         

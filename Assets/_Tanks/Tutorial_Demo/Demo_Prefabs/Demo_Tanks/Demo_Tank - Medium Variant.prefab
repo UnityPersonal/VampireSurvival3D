@@ -92,9 +92,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11443146, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+    - {fileID: 11409376, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+    - {fileID: 11488788, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+    - {fileID: 8577645068931744711, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 151450, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
+    - {fileID: 7195122576445475466, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 446194, guid: 756d3a6506f2f8241b4e8badde68567a, type: 3}
       insertIndex: 0

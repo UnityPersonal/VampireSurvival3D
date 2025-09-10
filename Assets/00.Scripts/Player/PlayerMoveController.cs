@@ -13,7 +13,6 @@ public class PlayerMoveController : MonoBehaviour
     
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = 180f;
-    [SerializeField] Animator animator;
     [Required,SerializeField] CharacterController characterController;
     
     private InputActionMap playerActionMap;
@@ -85,7 +84,6 @@ public class PlayerMoveController : MonoBehaviour
     
     private void Move()
     {
-        animator.SetFloat("MoveSpeed", moveInputVector.magnitude);
         if (moveInputVector != Vector2.zero)
         {
             var moveDelta = moveDirection * (moveSpeed * Time.fixedDeltaTime);
