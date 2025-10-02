@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d189772ce8336648be172d60fd2c793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
   inputActionAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   moveSpeed: 6
   rotateSpeed: 5
@@ -663,12 +664,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f966283cf74255e499e7ea58ae60bafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: 0}
+  firePoint: {fileID: 0}
   aimLayer:
     serializedVersion: 2
     m_Bits: 64
   projectile: {fileID: 3472488165374478307, guid: 989dbeb5e468ae1448b56ee9d6c1d1f8, type: 3}
   fireRate: 0.1
   aimRadius: 10
+  rotateSpeed: 50
 --- !u!1 &4587286081500192526
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7922054711371134890}
   m_Layer: 9
-  m_Name: TankRenderers
+  m_Name: TankBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +794,6 @@ Transform:
   - {fileID: 2734804219815201729}
   - {fileID: 762582040743174396}
   - {fileID: 2995780186940809089}
-  - {fileID: 5158821739339662571}
   m_Father: {fileID: 2200477378165536725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6798874315052367476
@@ -886,12 +889,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399018368461958147}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7922054711371134890}
+  m_Father: {fileID: 2200477378165536725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &187946558749536194
 MeshFilter:
@@ -1120,6 +1123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5158821739339662571}
   - {fileID: 7922054711371134890}
   - {fileID: 3241522498796800369}
   - {fileID: 8616939262066562344}

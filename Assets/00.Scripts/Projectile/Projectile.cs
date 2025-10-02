@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour , IDisposable
     
     public void Dispose()
     {
+        Debug.Log("Projectile Disposed");
         if (isDisposed == false)
         {
             isDisposed  = true;
@@ -29,13 +30,15 @@ public class Projectile : MonoBehaviour , IDisposable
 
     public void Init()
     {
+        Debug.Log($"Projectile Init");
         isDisposed  = false;
         currentLife  = lifetime;
     }
 
-    public void Setup(Vector3 direction)
+    public void Setup(Vector3 position, Vector3 direction)
     {
-        rb.linearVelocity = direction * moveSpeed;
+        rb.position = position;
+        rb.linearVelocity = direction.normalized * moveSpeed;
     }
 
     private void Update()
@@ -43,6 +46,7 @@ public class Projectile : MonoBehaviour , IDisposable
         currentLife -= Time.deltaTime;
         if (currentLife <= 0)
         {
+            Debug.Log($"Projectile Life End");
             Dispose();
         }
     }
@@ -56,6 +60,7 @@ public class Projectile : MonoBehaviour , IDisposable
         {
             combatable.TakeDamage(new DealEventArgs(attackPower));
         }
+        Debug.Log($"Projectile Trigger Enter");
         Dispose();
     }
 

@@ -62,6 +62,12 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
 
     public void Dispose()
     {
+        DropItemEventArgs args = new DropItemEventArgs(
+            point: point,
+            position: transform.position
+            );
+        
+        GameEventManager.Publish(args);
         OnDispose?.Invoke();
     }
 }

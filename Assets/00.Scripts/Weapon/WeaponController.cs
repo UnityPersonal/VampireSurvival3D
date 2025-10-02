@@ -12,9 +12,11 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField, Required, ChildGameObjectsOnly] private Transform turret;
     [SerializeField, Required, ChildGameObjectsOnly] Transform firePoint;
+    [SerializeField, Required, ChildGameObjectsOnly] Transform body;
 
     private static void DestroyProjectile(Projectile obj)
     {
+        Destroy(obj.gameObject);
     }
 
     private static void ReleaseProjectile(Projectile obj)
@@ -51,7 +53,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        projectilePool = new ObjectPool<Projectile>(CreateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile );
+        projectilePool = new ObjectPool<Projectile>(CreateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile, true, 100,100);
     }
 
     public void Dispose(Projectile obj)
@@ -61,54 +63,49 @@ public class WeaponController : MonoBehaviour
 
     private Collider[] currentFrameDetected;
 
-    void RotateTurret()
+    [SerializeField] float rotateSpeed = 50f;
+    void RotateTurret(Vector3 direction)
     {
-        
+        Vector3 turretDirection = turret.forward;
+        turret.forward = Vector3.Slerp(turretDirection, direction, Time.fixedDeltaTime * rotateSpeed);
     }
 
     void Update()
     {
-        currentFrameDetected = Physics.OverlapSphere( playerTransform.position, aimRadius, aimLayer.value);
+        Transform weaponTransform  = transform;
+        currentFrameDetected = Physics.OverlapSphere( weaponTransform.position, aimRadius, aimLayer.value);
+        
+        Vector3 aimDirection = turret.forward;
+
         if (currentFrameDetected.Length == 0)
         {
-            return;
+            aimDirection = body.forward; // 적이 없다면 현재 이동 방향을 향한다.
         }
+        else
+        {
+            var target = new AimTarget[currentFrameDetected.Length];
+            for (int i = 0; i < currentFrameDetected.Length; i++)
+            {
+                var t = target[i];
+                t.aimVector = currentFrameDetected[i].transform.position - weaponTransform.position;
+                t.sqrMagnitude = t.aimVector.sqrMagnitude;
+                target[i] = t;
+            }
+            
+            target.Sort((l,r) => l.sqrMagnitude.CompareTo(r.sqrMagnitude));
+            //Debug.Log($"Final Target of {target.Length}: {target[0].aimVector} {target[0].sqrMagnitude}");
+            aimDirection = target[0].aimVector.normalized;
+        }
+        
+        RotateTurret(aimDirection);
         
         if (fireTime + fireRate < Time.time)
         {
-            Transform playerTransform  = firePoint;
-            Vector3 aimDirection = playerTransform.forward;
-            
-            // aim search
-            var collisons= Physics.OverlapSphere( playerTransform.position, aimRadius, aimLayer.value);
-            if (collisons.Length > 0)
-            {
-                var target = new AimTarget[collisons.Length];
-                for (int i = 0; i < collisons.Length; i++)
-                {
-                    var t = target[i];
-                    t.aimVector = collisons[i].transform.position - playerTransform.position;
-                    t.sqrMagnitude = t.aimVector.sqrMagnitude;
-                    target[i] = t;
-                }
-            
-                target.Sort((l,r) => l.sqrMagnitude.CompareTo(r.sqrMagnitude));
-                //Debug.Log($"Final Target of {target.Length}: {target[0].aimVector} {target[0].sqrMagnitude}");
-                aimDirection = target[0].aimVector.normalized;
-            }
-            
             // spawn and fire projectile
             var instance = projectilePool.Get();
-            instance.transform.position = playerTransform.position;
-            instance.Setup(aimDirection);
+            instance.Setup(firePoint.position, turret.forward);
 
-            var turrentDirection = aimDirection;
-            turrentDirection.y = 0;
-            turrentDirection.Normalize();
-            
             fireTime = Time.time;
-            
-            turrentDirection.Normalize();
         }
         
         

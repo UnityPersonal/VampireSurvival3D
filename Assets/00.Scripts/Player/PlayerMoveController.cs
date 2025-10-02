@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMoveController : MonoBehaviour 
+public class PlayerMoveController : MonoBehaviour
 {
+    [field: SerializeField, Required] public Transform body;
     [SerializeField] private InputActionAsset inputActionAsset;
     [ReadOnly] private Vector2 moveInputVector;
     
@@ -69,8 +70,8 @@ public class PlayerMoveController : MonoBehaviour
             var toward = (moveRight + moveForward).normalized;
             
             moveDirection = Vector3.Slerp(moveDirection , toward, Time.fixedDeltaTime * rotateSpeed);
-            moveDirection = toward;
-            transform.forward = moveDirection;
+            //moveDirection = toward;
+            body.forward = moveDirection;
             
         }
     }
