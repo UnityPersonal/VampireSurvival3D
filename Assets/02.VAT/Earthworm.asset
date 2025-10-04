@@ -22,16 +22,16 @@ MonoBehaviour:
     originalClip: {fileID: 1827226128182048838, guid: 1b620e87f200bab41b1b90f4883fa4c6, type: 3}
   - isLooping: 1
     clipBeginIndexInTexture: 361
-    clipLength: 30
-    duration: 0.5
-    originalClip: {fileID: 1827226128182048838, guid: 4172bc0807af8f64882e4b239865fcaa, type: 3}
+    clipLength: 51
+    duration: 0.8333334
+    originalClip: {fileID: 1827226128182048838, guid: 61605e9f5d5ba104b8a13e846a9f9f11, type: 3}
   - isLooping: 0
-    clipBeginIndexInTexture: 391
+    clipBeginIndexInTexture: 412
     clipLength: 51
     duration: 0.8333334
     originalClip: {fileID: 1827226128182048838, guid: c72832676042b064e8099c0e52021550, type: 3}
   - isLooping: 0
-    clipBeginIndexInTexture: 442
+    clipBeginIndexInTexture: 463
     clipLength: 120
     duration: 2
     originalClip: {fileID: 1827226128182048838, guid: da49d1e915581414fa0b3d1617ee00db, type: 3}

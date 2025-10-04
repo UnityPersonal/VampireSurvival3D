@@ -73,6 +73,7 @@ public class VATAnimator : MonoBehaviour
 
     public void Play(int clipIndex)
     {
+        Debug.unityLogger.Log(clipIndex.ToString());
         currentClipIndex = clipIndex;
         currentClip = animation.clips[currentClipIndex];
         currentTime = 0;

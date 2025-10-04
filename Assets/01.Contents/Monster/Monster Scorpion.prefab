@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8311512670865547001}
   - component: {fileID: 3764277083177275405}
   - component: {fileID: 4241481272213306308}
-  - component: {fileID: 3933623075224314510}
+  - component: {fileID: 4659647709063028019}
   m_Layer: 6
   m_Name: Animator
   m_TagString: Untagged
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136652930302003027}
-  m_Mesh: {fileID: 4300000, guid: 86a09b6bcc784f742b19f13c03492871, type: 2}
+  m_Mesh: {fileID: -1808012749157309818, guid: f167c3addd65c1c4f9e6a23af2beaf8c, type: 3}
 --- !u!23 &4241481272213306308
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4a2c87fe739d03e4582f6e1b1bc97cbf, type: 2}
+  - {fileID: 2100000, guid: 94824b61a22121449939c5715773d516, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3933623075224314510
+--- !u!114 &4659647709063028019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,16 +96,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1136652930302003027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555c041fa37ac494087c2ead0fe5b43e, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f8685fa974d5c4298dc10424241710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationSO: {fileID: 11400000, guid: 6bbe91320e8aced439a3578c146b13b1, type: 2}
-  MeshFilter: {fileID: 0}
-  AnimationIndex: 0
-  AnimationName: Walk
-  AnimationMeshes: []
-  LastTickTime: 0
-  isLooping: 0
+  animation: {fileID: 11400000, guid: d1794035abedda94d886b589d3b42ca3, type: 2}
 --- !u!1 &8285584526033206145
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,11 +149,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6044532950671056889}
-  animMesh: {fileID: 3933623075224314510}
+  animator: {fileID: 4659647709063028019}
   monsterCollider: {fileID: 4864438874935432384}
   monsterMeshRenderer: {fileID: 4241481272213306308}
   attackRadius: 5
-  frameInterval: 5
   hp: 2
 --- !u!195 &6044532950671056889
 NavMeshAgent:
