@@ -1,24 +1,27 @@
 using System;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
-public class GameValue<T>
+public class GameValue<T> where T : IComparable<T>, IEquatable<T>
 {
-    [SerializeField] T value;
+    [SerializeField] protected T value;
     
+    // (oldvalue , newvalue)
     public UnityEvent<T,T> OnValueChanged; 
 
-    public T Value
+    public virtual T Value
     {
         get { return value; }
         set
         {
-            if (this.value.Equals(value))
-            {
-                OnValueChanged?.Invoke(this.value, value);
-            }
+            var old = this.value;
             this.value = value;
+            if (!old.Equals(this.value))
+            {
+                OnValueChanged?.Invoke(old, this.value);
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
         
     }
 
-    public void OnTriggerDrop()
+    public void OnTriggerObtain()
     {
         isTriggerd = true;
         
@@ -39,7 +39,11 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
         var scaleTween = transform.DOScale(Vector3.zero, 1);
         
         sequence.Join(scaleTween);
-        sequence.OnComplete(Dispose).SetAutoKill();
+        sequence.OnComplete(()=>
+        {
+            Player.Instance.OnObtain(point);
+            Dispose();
+        }).SetAutoKill();
     }
 
     private void Update()
@@ -52,9 +56,9 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
         
         var offsetXZ = destinationXZ - itemXZ;
         
-        if (offsetXZ.magnitude < Player.Instance.dropRadius)
+        if (offsetXZ.magnitude < Player.Instance.ObtainRadius)
         {
-            OnTriggerDrop();
+            OnTriggerObtain();
         }
     }
 
@@ -62,12 +66,6 @@ public class DropItem : MonoBehaviour , IPoolable<DropItem> , IDisposable
 
     public void Dispose()
     {
-        DropItemEventArgs args = new DropItemEventArgs(
-            point: point,
-            position: transform.position
-            );
-        
-        GameEventManager.Publish(args);
         OnDispose?.Invoke();
     }
 }

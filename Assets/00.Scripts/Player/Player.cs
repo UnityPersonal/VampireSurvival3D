@@ -2,33 +2,35 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Player : SingletonOnlyScene<Player>
 {
-    [SerializeField] private GameValue<int> exp =new GameValue<int>();
-    private int levelupExp = 10;
+    [SerializeField] private RangedGameValueInt exp =new RangedGameValueInt();
     [SerializeField] GameValue<int> level = new GameValue<int>();
     public GameValue<int> Level => level;
-    
-    public float dropRadius = 1f;
+
+    [SerializeField] private float expMaxIncreaseRate = 0.3f;
+    [FormerlySerializedAs("dropRadius")] public float ObtainRadius = 1f;
 
     protected override void InitializeSingleton()
     {
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        GameEventManager.RegistListener<DropItemEventArgs>(OnDrop);
+        exp.OnOverflow.AddListener(() => { OnOverflowExp();});
     }
 
-    private void OnDrop(DropItemEventArgs obj)
+    private void OnOverflowExp()
     {
-        exp.Value += obj.Point;
-        if (exp.Value >= levelupExp)
-        {
-            exp.Value = levelupExp;
-            level.Value += 1;
-        }
+        level.Value += 1;
+        exp.MaxValue = exp.MaxValue + (int)(exp.MaxValue * expMaxIncreaseRate);
+    }
+
+    public void OnObtain(int point)
+    {
+        exp.Value += point;
     }
 
 }
