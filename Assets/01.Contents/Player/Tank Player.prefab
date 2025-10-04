@@ -484,7 +484,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2039
 --- !u!1 &3755558253586438304
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +651,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba37b6fcfd62db4db604f15efa5f221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropRadius: 1
+  exp:
+    value: 0
+    OnValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+    maxValue: 0
+    OnOverflow:
+      m_PersistentCalls:
+        m_Calls: []
+  level:
+    value: 0
+    OnValueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  expMaxIncreaseRate: 0.3
+  ObtainRadius: 1
 --- !u!114 &3108030813644534448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
   firePoint: {fileID: 0}
+  body: {fileID: 0}
   aimLayer:
     serializedVersion: 2
     m_Bits: 64

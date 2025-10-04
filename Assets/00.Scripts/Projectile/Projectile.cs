@@ -1,9 +1,11 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-public class Projectile : MonoBehaviour , IDisposable
+public abstract class Projectile : MonoBehaviour , IDisposable
 {
+    [Title("Projectile Default Settings")]
     public bool isDisposed = false;
     private WeaponController owner;
     [SerializeField] private float lifetime = 3;
@@ -39,6 +41,7 @@ public class Projectile : MonoBehaviour , IDisposable
     {
         rb.position = position;
         rb.linearVelocity = direction.normalized * moveSpeed;
+        rb.rotation = Quaternion.LookRotation(direction);
     }
 
     private void Update()
@@ -50,6 +53,8 @@ public class Projectile : MonoBehaviour , IDisposable
             Dispose();
         }
     }
+
+    public abstract void OnHit();
     
     private void OnTriggerEnter(Collider other)
     {
@@ -59,9 +64,8 @@ public class Projectile : MonoBehaviour , IDisposable
         if( CombatManager.TryLookup(other , out ICombatable combatable))
         {
             combatable.TakeDamage(new DealEventArgs(attackPower));
+            OnHit();
         }
-        Debug.Log($"Projectile Trigger Enter");
-        Dispose();
     }
 
 
