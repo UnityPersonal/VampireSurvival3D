@@ -3239,6 +3239,10 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7824475183280433925, guid: 44238b6fa3fa3f8459849ace185a36fa, type: 3}
+      propertyPath: dropRadius
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

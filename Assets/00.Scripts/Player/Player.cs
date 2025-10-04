@@ -5,12 +5,10 @@ using UnityEngine.Events;
 
 public class Player : SingletonOnlyScene<Player>
 {
-    private int exp = 0;
+    [SerializeField] private GameValue<int> exp =new GameValue<int>();
     private int levelupExp = 10;
-    private int level = 1;
-    public int Level => level;
-    
-    public UnityEvent<int> OnLevelUp = new UnityEvent<int>();
+    [SerializeField] GameValue<int> level = new GameValue<int>();
+    public GameValue<int> Level => level;
     
     public float dropRadius = 1f;
 
@@ -25,12 +23,11 @@ public class Player : SingletonOnlyScene<Player>
 
     private void OnDrop(DropItemEventArgs obj)
     {
-        exp += obj.Point;
-        if (exp >= levelupExp)
+        exp.Value += obj.Point;
+        if (exp.Value >= levelupExp)
         {
-            exp = levelupExp;
-            level++;
-            OnLevelUp?.Invoke(level);
+            exp.Value = levelupExp;
+            level.Value += 1;
         }
     }
 
